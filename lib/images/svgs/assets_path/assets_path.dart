@@ -1,0 +1,11 @@
+const String lessons = "assets/lesson.png";
+const String svg1 = "assets/svgs/svg1.svg";
+const String svg2 = "assets/svgs/svg2.svg";
+const String svg3 = "assets/svgs/svg3.svg";
+const String password = "assets/svgs/Password.svg";
+const String verify_email = "assets/svgs/verify_email.svg";
+const String check_icon = "assets/svgs/check.svg";
+const String cross_icon="assets/svgs/times.svg";
+const String add_weight="assets/svgs/add_weight.svg";
+const String add_activity="assets/svgs/add_activity.svg";
+const String kicks_counter="assets/svgs/kicks.svg";
