@@ -3,25 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:mm_project/sdk/widgets/button_widget.dart';
 import 'package:mm_project/sdk/widgets/custom_appbar.dart';
 import 'package:mm_project/sdk/widgets/custom_date_picker.dart';
-import 'package:mm_project/sdk/widgets/custom_image_picker.dart';
+import 'package:mm_project/sdk/widgets/custom_dropdown.dart'; // Dot Dropdown
 import 'package:mm_project/styles/colors/colors.dart';
 import 'package:mm_project/styles/layouts/sizes.dart';
-import 'log_added.dart';
+import '../log_weight/log_added.dart';
 
-class AddWeightBottomSheetScreen extends StatefulWidget {
-  const AddWeightBottomSheetScreen({super.key});
+class LogActivityScreen extends StatefulWidget {
+  const LogActivityScreen({super.key});
 
   @override
-  State<AddWeightBottomSheetScreen> createState() =>
-      _AddWeightBottomSheetScreenState();
+  State<LogActivityScreen> createState() => _LogActivityScreenState();
 }
 
-class _AddWeightBottomSheetScreenState
-    extends State<AddWeightBottomSheetScreen> {
+class _LogActivityScreenState extends State<LogActivityScreen> {
   final TextEditingController _weightController = TextEditingController();
   File? _selectedImage;
   DateTime? _selectedDate;
   int _selectedIndex = 0;
+
+  DropdownItem? _selectedActivity;
+  final List<DropdownItem> _activities = [
+    DropdownItem(label: 'Cardio', dotColor: Color(0xFFFF6727)),
+    DropdownItem(label: 'Yoga', dotColor: Color(0xFF00B84A)),
+    DropdownItem(label: 'Strength', dotColor: Color(0xFF8063FF)),
+    DropdownItem(label: 'Meditation', dotColor: Color(0xFF00A8E1)),
+  ];
 
   @override
   void dispose() {
@@ -46,21 +52,13 @@ class _AddWeightBottomSheetScreenState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MediaQuery.removePadding(
-                context: context,
-                removeLeft: true,
-                removeRight: true,
-                child: const CustomAppBar(),
-              ),
+              const CustomAppBar(),
               Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 20,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                 child: Column(
                   children: [
                     Center(
@@ -76,7 +74,7 @@ class _AddWeightBottomSheetScreenState
                     const SizedBox(height: 16),
                     const Center(
                       child: Text(
-                        "Log Weight",
+                        "Log Activity",
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
@@ -85,6 +83,8 @@ class _AddWeightBottomSheetScreenState
                       ),
                     ),
                     const SizedBox(height: 24),
+
+
                     Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -110,7 +110,7 @@ class _AddWeightBottomSheetScreenState
                           const Padding(
                             padding: EdgeInsets.only(bottom: 12),
                             child: Text(
-                              'lb',
+                              'min',
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w400,
@@ -121,9 +121,36 @@ class _AddWeightBottomSheetScreenState
                         ],
                       ),
                     ),
+
                     const SizedBox(height: 16),
                     const Divider(thickness: 1, color: Color(0xFFEEEEEE)),
                     const SizedBox(height: 16),
+
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Type of activity',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+
+                    // Colored Dot Dropdown
+                    CustomDropdown(
+                      selectedItem: _selectedActivity,
+                      items: _activities,
+                      hintText: '-- Choose --',
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedActivity = value;
+                        });
+                      },
+                    ),
+
+                    const SizedBox(height: 20),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: const Text(
@@ -135,6 +162,7 @@ class _AddWeightBottomSheetScreenState
                       ),
                     ),
                     const SizedBox(height: 8),
+
                     CustomDatePicker(
                       selectedDate: _selectedDate,
                       onDatePicked: (date) {
@@ -143,30 +171,7 @@ class _AddWeightBottomSheetScreenState
                         });
                       },
                     ),
-                    const SizedBox(height: 20),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: const Text(
-                        'Bump Pic',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    CustomImagePicker(
-                      onImagePicked: (file) {
-                        setState(() {
-                          _selectedImage = file;
-                        });
-                      },
-                    ),
-                    if (_selectedImage != null)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 12.0),
-                        child: Image.file(_selectedImage!, height: 100),
-                      ),
+
                     const SizedBox(height: 28),
                     Center(
                       child: RoundButton(
@@ -174,14 +179,12 @@ class _AddWeightBottomSheetScreenState
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => const LogAddedScreen(),
-                            ),
+                            MaterialPageRoute(builder: (_) => const LogAddedScreen()),
                           );
                         },
-                        bgcolor: CustomColors.purpule600.withOpacity(0.1),
+                        bgcolor: CustomColors.purpule600,
                         btnheight: 48,
-                        btnwidth: 343,
+                        btnwidth: double.infinity,
                       ),
                     ),
                     const SizedBox(height: 32),
@@ -192,29 +195,33 @@ class _AddWeightBottomSheetScreenState
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        height: 85,
-        decoration: BoxDecoration(
-          color: CustomColors.white,
-          boxShadow: [
-            BoxShadow(
-              color: CustomColors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, -2),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildNavItem(Icons.home_outlined, "Home", 0),
-            _buildNavItem(Icons.menu_book_outlined, "Library", 1),
-            _buildAddButton(),
-            _buildNavItem(Icons.restaurant_menu_outlined, "Recipes", 3),
-            _buildNavItem(Icons.grid_view_rounded, "Browse", 4),
-          ],
-        ),
+      bottomNavigationBar: _buildBottomNavBar(),
+    );
+  }
+
+  Widget _buildBottomNavBar() {
+    return Container(
+      width: double.infinity,
+      height: 85,
+      decoration: BoxDecoration(
+        color: CustomColors.white,
+        boxShadow: [
+          BoxShadow(
+            color: CustomColors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, -2),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildNavItem(Icons.home_outlined, "Home", 0),
+          _buildNavItem(Icons.menu_book_outlined, "Library", 1),
+          _buildAddButton(),
+          _buildNavItem(Icons.restaurant_menu_outlined, "Recipes", 3),
+          _buildNavItem(Icons.grid_view_rounded, "Browse", 4),
+        ],
       ),
     );
   }
@@ -229,9 +236,7 @@ class _AddWeightBottomSheetScreenState
           Icon(
             icon,
             size: Sizes.s24,
-            color: isSelected
-                ? CustomColors.purpule600
-                : const Color(0xFF616161),
+            color: isSelected ? CustomColors.purpule600 : const Color(0xFF616161),
           ),
           const SizedBox(height: Sizes.s4),
           Text(
@@ -239,9 +244,7 @@ class _AddWeightBottomSheetScreenState
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: Sizes.s11,
-              color: isSelected
-                  ? CustomColors.black50
-                  : const Color(0xFF616161),
+              color: isSelected ? CustomColors.black50 : const Color(0xFF616161),
             ),
           ),
         ],
