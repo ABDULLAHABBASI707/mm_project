@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mm_project/features/log_weight/add_weight.dart';
-import 'package:mm_project/images/svgs/assets_path/assets_path.dart';
+import 'package:mm_project/sdk/widgets/custom_appbar.dart';
 import 'package:mm_project/styles/colors/colors.dart';
-import 'package:mm_project/styles/extensions/extensions.dart';
 import '../../styles/layouts/fonts.dart';
 import '../../styles/layouts/sizes.dart';
-import 'package:badges/badges.dart' as badges;
+import '../../sdk/widgets/gridbottomsheet.dart';
 
 class LogWeightHomeScreen extends StatefulWidget {
   const LogWeightHomeScreen({super.key});
@@ -26,9 +23,9 @@ class _LogWeightHomeScreenState extends State<LogWeightHomeScreen> {
   void _showLogBottomSheet() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Color(0xFFF5F5F5),
       isScrollControlled: true,
-      builder: (_) => bottomSheetWidget(),
+      builder: (_) => gridBottomSheet( context: context, ),
     );
   }
 
@@ -43,47 +40,7 @@ class _LogWeightHomeScreenState extends State<LogWeightHomeScreen> {
               height: 440,
               child: Stack(
                 children: [
-                  Container(
-                    height: 358,
-                    decoration: BoxDecoration(color: CustomColors.purpule),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Hi, Angel",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: FontSize.f24,
-                              ),
-                            ),
-                            badges.Badge(
-                              badgeStyle: badges.BadgeStyle(
-                                badgeColor: CustomColors.ember,
-                              ),
-                              badgeContent: Text(
-                                '12',
-                                style: TextStyle(
-                                  color: CustomColors.white,
-                                  fontSize: FontSize.f10,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              child: const Icon(
-                                Icons.notifications_none,
-                                size: 26,
-                              ),
-                            ),
-                          ],
-                        ).padOnly(
-                          left: Sizes.s16,
-                          top: Sizes.s64,
-                          right: Sizes.s80,
-                        ),
-                      ],
-                    ),
-                  ),
+                 CustomAppBar(),
                   Positioned(
                     left: 20,
                     right: 20,
@@ -200,33 +157,6 @@ class _LogWeightHomeScreenState extends State<LogWeightHomeScreen> {
     );
   }
 
-  Widget logItems(String image, String data) {
-    return Container(
-      width: 166,
-      height: 112,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 18),
-        child: Column(
-          children: [
-            SvgPicture.asset(image, height: 40),
-            const SizedBox(height: 12),
-            Text(
-              data,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: CustomColors.black900,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   Widget _buildNavItem(IconData icon, String label, int index) {
     final isSelected = _selectedIndex == index;
@@ -280,58 +210,6 @@ class _LogWeightHomeScreenState extends State<LogWeightHomeScreen> {
         ),
         child: const Icon(Icons.add, color: Colors.white, size: Sizes.s24),
       ),
-    );
-  }
-
-  Widget bottomSheetWidget() {
-    return Stack(
-      children: [
-        Positioned(
-          top: 435,
-          left: 0,
-          right: 0,
-          child: Container(
-            height: 292,
-            //  margin: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF5F5F5),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(12),
-                topRight: Radius.circular(12),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16, top: 32),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>AddWeightScreen()));
-                        },
-
-                        child: logItems(add_weight, 'Add Weight'),
-                      ),
-                      logItems(add_activity, 'Add Activity'),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      logItems(add_activity, 'Contraction'),
-                      logItems(kicks_counter, 'Kicks Counter'),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

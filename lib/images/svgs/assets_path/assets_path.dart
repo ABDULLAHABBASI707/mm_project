@@ -9,3 +9,4 @@ const String cross_icon="assets/svgs/times.svg";
 const String add_weight="assets/svgs/add_weight.svg";
 const String add_activity="assets/svgs/add_activity.svg";
 const String kicks_counter="assets/svgs/kicks.svg";
+const String log_added="assets/svgs/log_added.svg";
