@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class CustomDatePicker extends StatelessWidget {
   final DateTime? selectedDate;
@@ -35,7 +36,7 @@ class CustomDatePicker extends StatelessWidget {
             }
           },
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding:  EdgeInsets.symmetric(horizontal: 16),
             height: 48,
             decoration: BoxDecoration(
               border: Border.all(
@@ -55,8 +56,16 @@ class CustomDatePicker extends StatelessWidget {
                     color: selectedDate != null ? Colors.black : Colors.grey,
                   ),
                 ),
-                Icon(Icons.calendar_today_outlined,
-                    color: Colors.indigo.shade900),
+                Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFF5F5F5),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Icon(LucideIcons.calendar,
+                      color: Colors.indigo.shade900),
+                ),
               ],
             ),
           ),

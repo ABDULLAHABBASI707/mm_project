@@ -39,6 +39,7 @@ dependencies:
   reactive_forms:
   intl:
   image_picker:
+  lucide_icons_flutter:
 
 dev_dependencies:
   flutter_test:

@@ -1,294 +1,435 @@
+// // import 'package:flutter/cupertino.dart';
+// // import 'package:flutter/material.dart';
+// //
+// // class KickCounter2 extends StatefulWidget {
+// //   const KickCounter2({super.key});
+// //
+// //   @override
+// //   State<KickCounter2> createState() => _KickCounter2State();
+// // }
+// //
+// // class _KickCounter2State extends State<KickCounter2> {
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     return Scaffold(
+// //       appBar: AppBar(
+// //         elevation: 0,
+// //         leading: IconButton(
+// //           onPressed: () {
+// //             Navigator.pop(context);
+// //           },
+// //           icon: const Icon(Icons.close, color: Color(0xFF616161)),
+// //         ),
+// //         title: const Text(
+// //           "Kick Counter",
+// //           style: TextStyle(
+// //             fontWeight: FontWeight.w600,
+// //             fontSize: 16,
+// //             color: Colors.black,
+// //           ),
+// //         ),
+// //         centerTitle: true,
+// //         actions: [
+// //           Padding(
+// //             padding: const EdgeInsets.only(right: 19),
+// //             child: Icon(Icons.watch_later_outlined, color: Color(0xFF616161)),
+// //           ),
+// //         ],
+// //       ),
+// //       body: Column(
+// //
+// //         children: [
+// //           Expanded(child: SizedBox()),
+// //           Container(
+// //
+// //             margin:  EdgeInsets.only(left: 40,right: 40,top: 24),
+// //             padding: EdgeInsets.only(left: 20,right: 20,top: 12,bottom: 12),
+// //             decoration: BoxDecoration(color: Color(0xFFF5F5F5),
+// //             borderRadius: BorderRadius.circular(12)),
+// //             child: Text(
+// //               "Tap the icon below when your baby kicks. Count 10 kicks in less than 2 hours.",
+// //             ),
+// //           ),
+// //         ],
+// //       ),
+// //     );
+// //   }
+// // }
+//
+// import 'package:flutter/material.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:mm_project/images/svgs/assets_path/assets_path.dart'; // Make sure kick.svg is inside this
+//
+// import '../../styles/colors/colors_custom.dart';
+//
+// class KickCounter2 extends StatefulWidget {
+//   const KickCounter2({super.key});
+//
+//   @override
+//   State<KickCounter2> createState() => _KickCounter2State();
+// }
+//
+// class _KickCounter2State extends State<KickCounter2> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         elevation: 0,
+//         leading: IconButton(
+//           onPressed: () {
+//             Navigator.pop(context);
+//           },
+//           icon: const Icon(Icons.close, color: Color(0xFF616161)),
+//         ),
+//         title: const Text(
+//           "Kick Counter",
+//           style: TextStyle(
+//             fontWeight: FontWeight.w600,
+//             fontSize: 16,
+//             color: Colors.black,
+//           ),
+//         ),
+//         centerTitle: true,
+//         actions: const [
+//           Padding(
+//             padding: EdgeInsets.only(right: 19),
+//             child: Icon(Icons.watch_later_outlined, color: Color(0xFF616161)),
+//           ),
+//         ],
+//       ),
+//       body: Column(
+//         crossAxisAlignment: CrossAxisAlignment.stretch,
+//         children: [
+//           Container(
+//             margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
+//             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+//             decoration: BoxDecoration(
+//               color: const Color(0xFFF5F5F5),
+//               borderRadius: BorderRadius.circular(12),
+//             ),
+//             child: const Text(
+//               "Tap the icon below when your baby kicks. Count 10 kicks in less than 2 hours.",
+//               style: TextStyle(
+//                 fontWeight: FontWeight.w500,
+//                 fontSize: 14,
+//                 letterSpacing: 0.4,
+//                 color: CustomColors.black900,
+//               ),
+//               textAlign: TextAlign.center,
+//             ),
+//           ),
+//
+//           Center(
+//             child: Container(
+//               margin: const EdgeInsets.only(top: 90, bottom: 40),
+//               padding: const EdgeInsets.all(30),
+//               decoration: BoxDecoration(
+//                 color: Color(0xFFF2EFF6),
+//                 shape: BoxShape.circle,
+//                 border: Border.all(color: const Color(0xFF9D86BD), width: 3),
+//               ),
+//               child: Container(
+//                 width: 160,
+//                 height: 160,
+//                 decoration: const BoxDecoration(
+//                   color: Color(0xFFB29DCE),
+//                   shape: BoxShape.circle,
+//                 ),
+//                 child: Center(child: SvgPicture.asset(union, height: 80)),
+//               ),
+//             ),
+//           ),
+//           Flexible(child: SizedBox()),
+//
+//           Padding(
+//             padding: const EdgeInsets.only(left: 56, right: 56, top: 40),
+//             child: Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 Column(
+//                   children: [
+//                     Container(
+//                       height: 40,
+//                       width: 40,
+//
+//                       decoration: BoxDecoration(
+//                         color: Color(0xFFE0F8F6),
+//                         borderRadius: BorderRadius.circular(40),
+//
+//                       ),
+//                       child: SvgPicture.asset(restart_btn, height: 10),
+//                     ),
+//                     Text(
+//                       "Restart",
+//                       style: TextStyle(
+//                         fontWeight: FontWeight.w500,
+//                         fontSize: 14,
+//                         letterSpacing: 0.4,
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//
+//                 Column(
+//                   children: [
+//                     Text(
+//                       "8",
+//                       style: TextStyle(
+//                         fontWeight: FontWeight.w700,
+//                         fontSize: 32,
+//                       ),
+//                     ),
+//                     Text(
+//                       "Baby kicks",
+//                       style: TextStyle(
+//                         fontWeight: FontWeight.w500,
+//                         fontSize: 14,
+//                         letterSpacing: 0.4,
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//
+//                 Column(
+//                   children: [
+//                     Container(
+//                       height: 40,
+//                       width: 40,
+//
+//                       decoration: BoxDecoration(
+//                         color: Color(0xFFFFE9E6),
+//                         borderRadius: BorderRadius.circular(40),
+//                         border: Border.all(color: Color(0xFFE62204), width: 3),
+//                       ),
+//                       child: SvgPicture.asset(stop_btn, height: 10),
+//                     ),
+//                     Text(
+//                       "End",
+//                       style: TextStyle(
+//                         fontWeight: FontWeight.w500,
+//                         fontSize: 14,
+//                         letterSpacing: 0.4,
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ],
+//             ),
+//           ),
+//           Flexible(child: SizedBox()),
+//           Container(
+//             decoration: BoxDecoration(
+//
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
 import 'package:flutter/material.dart';
-import 'package:mm_project/features/kick_counter/kick_counter2.dart';
-import 'package:mm_project/sdk/widgets/button_widget.dart';
-import 'package:mm_project/sdk/widgets/custom_date_picker.dart';
-import 'package:mm_project/sdk/widgets/custom_dropdown.dart';
-import 'package:mm_project/styles/colors/colors.dart';
-import 'package:mm_project/styles/layouts/sizes.dart';
-import '../log_weight/log_added.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:mm_project/features/kick_counter/kickcounter_appbar.dart';
+import 'package:mm_project/images/svgs/assets_path/assets_path.dart';
 
-class KickCounterScreen extends StatefulWidget {
-  const KickCounterScreen({super.key});
+import 'kick_report.dart';
+
+class KickCounter2 extends StatefulWidget {
+  const KickCounter2({super.key});
 
   @override
-  State<KickCounterScreen> createState() => _KickCounterScreenState();
+  State<KickCounter2> createState() => _KickCounter2State();
 }
 
-class _KickCounterScreenState extends State<KickCounterScreen> {
-  final TextEditingController _kickController = TextEditingController();
-  DateTime? _startDate;
-  DateTime? _endDate;
-  DropdownItem? _selectedNote;
-
-  final List<DropdownItem> _notes = [
-    DropdownItem(label: 'Cardio', dotColor: Color(0xFFFF6727)),
-    DropdownItem(label: 'Yoga', dotColor: Color(0xFF00B84A)),
-    DropdownItem(label: 'Strength', dotColor: Color(0xFF8063FF)),
-    DropdownItem(label: 'Meditation', dotColor: Color(0xFF00A8E1)),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _showKickCounterBottomSheet(context);
-    });
-  }
-
-  void _showKickCounterBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.white,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (_) {
-        return Padding(
-          padding: MediaQuery.of(context).viewInsets,
-          child: Container(
-            width: double.infinity,
-            height: 584,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    width: 40,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    "Kick Counter",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 100,
-                        child: TextField(
-                          controller: _kickController,
-                          keyboardType: TextInputType.number,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black,
-                          ),
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: '0',
-                          ),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(bottom: 20),
-                        child: Text(
-                          'kicks',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 8),
-                  const Divider(thickness: 1, color: Color(0xFFEEEEEE)),
-                  const SizedBox(height: 14),
-
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: const Text('Start',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 16)),
-                  ),
-                  const SizedBox(height: 8),
-                  CustomDatePicker(
-                    labelText: 'Start time',
-                    selectedDate: _startDate,
-                    onDatePicked: (date) => setState(() => _startDate = date),
-                  ),
-                  const SizedBox(height: 24),
-
-
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: const Text('End',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 16)),
-                  ),
-                  const SizedBox(height: 8),
-                  CustomDatePicker(
-                    labelText: 'End time',
-                    selectedDate: _endDate,
-                    onDatePicked: (date) => setState(() => _endDate = date),
-                  ),
-                  const SizedBox(height: 24),
-
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: const Text('Notes',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 16)),
-                  ),
-                  const SizedBox(height: 8),
-                  CustomDropdown(
-                    selectedItem: _selectedNote,
-                    items: _notes,
-                    hintText: '-- Choose --',
-                    onChanged: (value) =>
-                        setState(() => _selectedNote = value),
-                  ),
-
-                  const SizedBox(height: 28),
-
-                  RoundButton(
-                    title: 'Add Weight',
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => const KickCounter2()),
-                      );
-                    },
-                    bgcolor: CustomColors.purpule600,
-                    btnheight: 48,
-                    btnwidth: double.infinity,
-                  ),
-                  const SizedBox(height: 16),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() => _selectedIndex = index);
-  }
+class _KickCounter2State extends State<KickCounter2> {
+  int kickCount = 8;
+  String timeRemaining = "01:20:30";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Kick Counter",
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-                color: Colors.black)),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.close, color: Color(0xFF616161)),
-          onPressed: () => Navigator.pop(context),
-        ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 19),
-            child: Icon(Icons.watch_later_outlined, color: Color(0xFF616161)),
-          ),
-        ],
-      ),
       backgroundColor: Colors.white,
-      bottomNavigationBar: _buildBottomNavBar(),
-    );
-  }
+      appBar: KickcounterAppbar(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
 
-  Widget _buildBottomNavBar() {
-    return Container(
-      height: 85,
-      decoration: BoxDecoration(
-        color: CustomColors.white,
-        boxShadow: [
-          BoxShadow(
-            color: CustomColors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, -2),
+          Container(
+            margin: const EdgeInsets.only(left: 40,right: 40,top: 24,bottom: 90),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF5F5F5),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: const Text(
+              "Tap the icon below when your baby kicks.\nCount 10 kicks in less than 2 hours.",
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
+                color: Colors.black,
+                height: 1.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
           ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          _buildNavItem(Icons.home_outlined, "Home", 0),
-          _buildNavItem(Icons.menu_book_outlined, "Library", 1),
-          _buildAddButton(),
-          _buildNavItem(Icons.restaurant_menu_outlined, "Recipes", 3),
-          _buildNavItem(Icons.grid_view_rounded, "Browse", 4),
-        ],
-      ),
-    );
-  }
 
-  Widget _buildNavItem(IconData icon, String label, int index) {
-    final isSelected = _selectedIndex == index;
-    return GestureDetector(
-      onTap: () => _onItemTapped(index),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon,
-              size: Sizes.s24,
-              color: isSelected
-                  ? CustomColors.purpule600
-                  : const Color(0xFF616161)),
-          const SizedBox(height: Sizes.s4),
-          Text(
-            label,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: Sizes.s11,
-              color: isSelected
-                  ? CustomColors.black50
-                  : const Color(0xFF616161),
+          const Spacer(),
+          
+          Center(
+
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                  width: 240,
+                  height: 240,
+                  child: CircularProgressIndicator(
+                    value: kickCount / 24,
+                    strokeWidth: 6,
+                    backgroundColor: const Color(0xF3F1F5F9),
+                    valueColor: const AlwaysStoppedAnimation(Color(0xFF9D86BD)),
+                  ),
+                ),
+                Container(
+                  width: 160,
+                  height: 160,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF9D86BD),
+                    shape: BoxShape.circle,
+                  ),
+                  child: InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>KickReport()));
+                    },
+                    child: Center(
+                      child: SvgPicture.asset(
+                        Union,
+                        height: 64,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Flexible(child: SizedBox()),
+
+
+          Padding(
+            padding: const EdgeInsets.only(left:40,right: 40,top: 40),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFE0F8F6),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Icon(LucideIcons.rotateCcw,
+                          size: 24,
+                          color: const Color(0xFF00BFA5),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    const Text(
+                      "Restart",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ],
+                ),
+
+                Column(
+                  children: [
+                    Text(
+                      "$kickCount",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 32,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const Text(
+                      "Baby kicks",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ],
+                ),
+
+                Column(
+                  children: [
+                    Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFFE9E6),
+                        shape: BoxShape.circle,
+                      ),
+                      child:  Center(
+                        child: Icon(LucideIcons.circleStop,
+                          color: Color(0xFFE62204),
+                          size: 24,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    const Text(
+                      "End",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+
+          Flexible(child: SizedBox(height: 32,)),
+
+
+          Container(
+            margin: const EdgeInsets.only(left: 82, right: 81, bottom: 106),
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF5F5F5),
+              borderRadius: BorderRadius.circular(48),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(LucideIcons.clock3, size: 18, color: Colors.black54),
+                const SizedBox(width: 8),
+                Text(
+                  "Time remaining: $timeRemaining",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildAddButton() {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        width: Sizes.s32,
-        height: Sizes.s32,
-        padding: const EdgeInsets.all(Sizes.s4),
-        decoration: BoxDecoration(
-          color: CustomColors.purpule600,
-          borderRadius: BorderRadius.circular(40),
-          boxShadow: [
-            BoxShadow(
-              color: CustomColors.purpule600.withOpacity(0.3),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }

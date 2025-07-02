@@ -33,6 +33,7 @@ class _LogAddedScreenState extends State<LogAddedScreen> {
                 btnheight: 48,
               btnwidth:120 ,
                 ),
+
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class CustomImagePicker extends StatelessWidget {
   final Function(File) onImagePicked;
@@ -39,7 +40,14 @@ class CustomImagePicker extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
-            Icon(Icons.attach_file_outlined, color: Colors.indigo.shade900),
+            Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  color: Color(0xFFF5F5F5),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Icon(LucideIcons.paperclip, color: Colors.indigo.shade900)),
           ],
         ),
       ),

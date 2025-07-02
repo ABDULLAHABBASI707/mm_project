@@ -5,7 +5,7 @@ import 'package:mm_project/sdk/widgets/custom_appbar.dart';
 import 'package:mm_project/sdk/widgets/custom_date_picker.dart';
 import 'package:mm_project/sdk/widgets/custom_image_picker.dart';
 import 'package:mm_project/styles/colors/colors.dart';
-import 'package:mm_project/styles/layouts/sizes.dart';
+import '../../sdk/widgets/custom_navbar.dart';
 import 'log_added.dart';
 
 class AddWeightBottomSheetScreen extends StatefulWidget {
@@ -24,7 +24,14 @@ class _AddWeightBottomSheetScreenState
   int _selectedIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+    _weightController.addListener(_updateState);
+  }
+
+  @override
   void dispose() {
+    _weightController.removeListener(_updateState);
     _weightController.dispose();
     super.dispose();
   }
@@ -35,8 +42,18 @@ class _AddWeightBottomSheetScreenState
     });
   }
 
+  void _onAddPressed() {
+    Navigator.pop(context);
+  }
+
+  void _updateState() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
+    final bool isWeightEntered = _weightController.text.trim().isNotEmpty;
+
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
@@ -124,9 +141,9 @@ class _AddWeightBottomSheetScreenState
                     const SizedBox(height: 16),
                     const Divider(thickness: 1, color: Color(0xFFEEEEEE)),
                     const SizedBox(height: 16),
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
-                      child: const Text(
+                      child: Text(
                         'Date',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
@@ -144,9 +161,9 @@ class _AddWeightBottomSheetScreenState
                       },
                     ),
                     const SizedBox(height: 20),
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
-                      child: const Text(
+                      child: Text(
                         'Bump Pic',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
@@ -179,7 +196,9 @@ class _AddWeightBottomSheetScreenState
                             ),
                           );
                         },
-                        bgcolor: CustomColors.purpule600.withOpacity(0.1),
+                        bgcolor: isWeightEntered
+                            ? CustomColors.purpule600
+                            : CustomColors.purpule600.withOpacity(0.1),
                         btnheight: 48,
                         btnwidth: 343,
                       ),
@@ -192,82 +211,11 @@ class _AddWeightBottomSheetScreenState
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        height: 85,
-        decoration: BoxDecoration(
-          color: CustomColors.white,
-          boxShadow: [
-            BoxShadow(
-              color: CustomColors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, -2),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildNavItem(Icons.home_outlined, "Home", 0),
-            _buildNavItem(Icons.menu_book_outlined, "Library", 1),
-            _buildAddButton(),
-            _buildNavItem(Icons.restaurant_menu_outlined, "Recipes", 3),
-            _buildNavItem(Icons.grid_view_rounded, "Browse", 4),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavItem(IconData icon, String label, int index) {
-    final isSelected = _selectedIndex == index;
-    return GestureDetector(
-      onTap: () => _onItemTapped(index),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            size: Sizes.s24,
-            color: isSelected
-                ? CustomColors.purpule600
-                : const Color(0xFF616161),
-          ),
-          const SizedBox(height: Sizes.s4),
-          Text(
-            label,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: Sizes.s11,
-              color: isSelected
-                  ? CustomColors.black50
-                  : const Color(0xFF616161),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAddButton() {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        width: Sizes.s32,
-        height: Sizes.s32,
-        padding: const EdgeInsets.all(Sizes.s4),
-        decoration: BoxDecoration(
-          color: CustomColors.purpule600,
-          borderRadius: BorderRadius.circular(40),
-          boxShadow: [
-            BoxShadow(
-              color: CustomColors.purpule600.withOpacity(0.3),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: const Icon(Icons.add, color: Colors.white),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
+        onAddPressed: _onAddPressed,
+        isAddButtonActive: true,
       ),
     );
   }
