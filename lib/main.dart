@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mm_project/features/home_screen/home_screen.dart';
+import 'features/baby_screen/baby_details.dart';
 import 'features/home_screen/diet_assessment.dart';
 import 'features/log_weight/logweight_homescreen.dart';
 import 'features/onboarding_screen/onboarding_screen.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: LogWeightHomeScreen(),
+      home: BabyDetailsScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
