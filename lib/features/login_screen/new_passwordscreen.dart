@@ -67,9 +67,15 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                 showError: true,
               ),
               const SizedBox(height: 32),
-              GenericButton(text: "Confirm", onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
-              }),
+              GenericButton(
+                text: "Confirm",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -158,11 +164,11 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
   Widget _buildLabel(String text) => Text(
     text,
     style: const TextStyle(
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: FontWeight.w500,
       letterSpacing: 0.4,
       height: 24 / 16,
-      color: Colors.black87,
+      color: Color(0xFF212121),
     ),
   );
 

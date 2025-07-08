@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mm_project/features/login_screen/password_recovery.dart';
+import 'package:mm_project/sdk/widgets/button_widget.dart';
 import 'package:mm_project/styles/colors/colors.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import '../../sdk/widgets/onboarding_btn.dart';
@@ -26,7 +27,7 @@ class LoginScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Column(
               children: [
-                const SizedBox(height: 24),
+                const SizedBox(height: 16),
                 Row(
                   children: const [
                     Icon(Icons.arrow_back, color: Color(0xFF616161)),
@@ -35,14 +36,16 @@ class LoginScreen extends StatelessWidget {
                       "Login",
                       style: TextStyle(
                         fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
+                        height: 24 / 16,
                       ),
                     ),
                     Spacer(flex: 1),
                   ],
                 ),
-                const SizedBox(height: 48),
+                const SizedBox(height: 32),
                 _buildLabel("Email"),
+                SizedBox(height: 8),
                 ReactiveTextField<String>(
                   formControlName: 'email',
                   decoration: _inputDecoration("Input field"),
@@ -50,34 +53,51 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 _buildLabel("Password"),
+                SizedBox(height: 8),
                 ReactiveTextField<String>(
                   formControlName: 'password',
                   obscureText: true,
                   decoration: _inputDecoration("• • • • • • •"),
                 ),
-                const SizedBox(height: 24),
-                GenericButton(text: "Login", color: Colors.white,onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>BabyDetailsScreen()));
-
-                },),
+                const SizedBox(height: 32),
+                RoundButton(
+                  btnwidth: double.infinity,
+                  title: "Login",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BabyDetailsScreen(),
+                      ),
+                    );
+                  },
+                  bgcolor: Color(0xFF7F67A1),
+                  btnheight: 48,
+                ),
                 const SizedBox(height: 12),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>PasswordRecovery()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PasswordRecovery(),
+                      ),
+                    );
                   },
                   child: const Text(
                     "Forgot your password?",
                     style: TextStyle(
-                      color: Colors.purple,
-                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF7F67A1),
+                      fontWeight: FontWeight.w500,
                       fontSize: 16,
                       letterSpacing: 0.5,
+                      height: 24 / 14,
                     ),
                   ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 32),
                 _buildDividerWithOr(),
-                const SizedBox(height: 24),
+                const SizedBox(height: 32),
                 _buildSocialButton(
                   "Continue with Google",
                   "assets/svgs/goggle_logo.svg",
@@ -87,12 +107,14 @@ class LoginScreen extends StatelessWidget {
                   "Continue with Facebook",
                   "assets/svgs/fb_logo.svg",
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 32),
                 const Text(
                   "We will never share your data",
                   style: TextStyle(
                     color: Color(0xFF616161),
                     fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    height: 16 / 12,
                     letterSpacing: 0.4,
                   ),
                 ),
@@ -110,7 +132,12 @@ class LoginScreen extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Text(
         text,
-        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          height: 24 / 16,
+          letterSpacing: 0.4,
+        ),
       ),
     );
   }
@@ -118,7 +145,13 @@ class LoginScreen extends StatelessWidget {
   InputDecoration _inputDecoration(String hint) {
     return InputDecoration(
       hintText: hint,
-      hintStyle: const TextStyle(color: Colors.grey),
+      hintStyle: const TextStyle(
+        color: Color(0xFF9E9E9E),
+        fontWeight: FontWeight.w500,
+        fontSize: 16,
+        height: 24 / 16,
+        letterSpacing: 0.4,
+      ),
       contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
     );
@@ -137,6 +170,7 @@ class LoginScreen extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.w500,
               letterSpacing: 0.4,
+              height: 20 / 14,
             ),
           ),
         ),

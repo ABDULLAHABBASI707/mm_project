@@ -21,7 +21,7 @@ class _ResendOtpScreenState extends State<ResendOtpScreen> {
         children: [
           Column(
             children: [
-              Center(child: SvgPicture.asset(verify_email, height: 80)),
+              Center(child: SvgPicture.asset(verify_email, height: 48)),
               SizedBox(height: 24),
               Text(
                 "Check your email",

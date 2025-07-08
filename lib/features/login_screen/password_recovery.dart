@@ -37,6 +37,7 @@ class _PasswordRecoveryState extends State<PasswordRecovery> {
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
+                    height: 28/18,
                     color: CustomColors.black900,
                   ),
                 ),
@@ -85,7 +86,7 @@ class _PasswordRecoveryState extends State<PasswordRecovery> {
       child: Text(
         text,
         style: const TextStyle(
-          fontSize: 14,
+          fontSize: 16,
           fontWeight: FontWeight.w500,
           letterSpacing: 0.4,
           height: 24 / 16,
@@ -98,7 +99,7 @@ class _PasswordRecoveryState extends State<PasswordRecovery> {
   InputDecoration _inputDecoration(String hint) {
     return InputDecoration(
       hintText: hint,
-      hintStyle: const TextStyle(color: Colors.grey),
+      hintStyle: const TextStyle(color: Color(0XFF9E9E9E)),
       contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mm_project/images/svgs/assets_path/assets_path.dart';
@@ -29,7 +28,6 @@ class BabyShareBottomSheet extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Container(
-        height: 720,
         width: double.infinity,
         decoration: const BoxDecoration(
           color: Color(0xFFFFFFFF),
@@ -50,93 +48,90 @@ class BabyShareBottomSheet extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Share your baby',
-                    style: TextStyle(
-                      fontSize: 18,
-                      height: 28 / 18,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF090909),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  _buildBabyCard(),
-                  SizedBox(height: 24),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Elizabeth Greaux",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 24,
-                          height: 32 / 24,
-                          color: Color(0xFF090909),
-                        ),
+                  const Center(
+                    child: Text(
+                      'Share your baby',
+                      style: TextStyle(
+                        fontSize: 18,
+                        height: 28 / 18,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF090909),
                       ),
                     ),
                   ),
                   const SizedBox(height: 24),
+                  _buildBabyCard(),
+                  const SizedBox(height: 24),
+                  Text(
+                    "Elizabeth Greaux",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 24,
+                      height: 32 / 24,
+                      color: Color(0xFF090909),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      infoColumn("Age", "36", ageUnit, LucideIcons.calendar),
+                      infoColumn(
+                        "Weight",
+                        "4-6",
+                        weightUnit,
+                        LucideIcons.weight,
+                      ),
+                      infoColumn("Size", "16-18", sizeUnit, LucideIcons.ruler),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  const Divider(
+                    color: Color(0xFFE0E0E0),
+                    thickness: 1,
+                    height: 1,
+                  ),
+                  const SizedBox(height: 16),
                   Padding(
-                    padding: const EdgeInsets.only(left: 16, right: 16),
+                    padding: const EdgeInsets.only(
+                      bottom: 16,
+                      left: 20,
+                      right: 19,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        infoColumn("Age", "36", "weeks", LucideIcons.calendar),
-                        infoColumn("Weight", "4-6", "lb", LucideIcons.weight),
-                        infoColumn("Size", "16-18", "inches", LucideIcons.ruler,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 24),
-                  Divider(color: Color(0xFFE0E0E0), thickness: 1, height: 1),
-
-                  SizedBox(height: 16),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      bottom: 16,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
                         _buildShareOption(
                           "Copy Link",
-                          Icon(
+                          const Icon(
                             LucideIcons.link,
                             size: 24,
-                            color: const Color(0xFF090909),
+                            color: Color(0xFF090909),
                           ),
                           () {},
                         ),
                         _buildShareOption(
                           "Facebook",
-                          SvgPicture.asset(
-                            facebook,
-                            height: 24,
-                          //  color: const Color(0xFF090909),
-                          ),
+                          SvgPicture.asset(facebook, height: 24),
                           () {},
                         ),
                         _buildShareOption(
                           "SMS",
-                          Icon(
+                          const Icon(
                             LucideIcons.messageCircle,
                             size: 24,
-                            color: const Color(0xFF090909),
+                            color: Color(0xFF090909),
                           ),
                           () {},
                         ),
                         _buildShareOption(
                           "Email",
-                          Icon(
+                          const Icon(
                             LucideIcons.mail,
                             size: 24,
-                            color: const Color(0xFF090909),
+                            color: Color(0xFF090909),
                           ),
                           () {},
                         ),
@@ -146,14 +141,14 @@ class BabyShareBottomSheet extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              height: 5,
-              width: 139,
-              decoration: BoxDecoration(
-                color: Color(0XFF090909),
-                borderRadius: BorderRadius.circular(100),
-              ),
-            ),
+            // Container(
+            //   height: 5,
+            //   width: 139,
+            //   decoration: BoxDecoration(
+            //     color: const Color(0XFF090909),
+            //     borderRadius: BorderRadius.circular(100),
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -166,14 +161,14 @@ class BabyShareBottomSheet extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient:  LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [Color(0xFFE1C7F0), Color(0xFFF5E6FF)],
         ),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Column(children: []),
+      child: const Column(children: []),
     );
   }
 

@@ -45,11 +45,7 @@ class _OnBoardingPageViewScreenState extends State<OnBoardingPageViewScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 168,bottom: 100),
-          ),
           Expanded(
             child: PageView.builder(
               clipBehavior: Clip.none,
@@ -76,7 +72,7 @@ class _OnBoardingPageViewScreenState extends State<OnBoardingPageViewScreen> {
           ),
 
           Padding(
-            padding: const EdgeInsets.only(top: 24, bottom: 40),
+            padding: const EdgeInsets.only( bottom: 40),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(3, (index) {
@@ -94,7 +90,7 @@ class _OnBoardingPageViewScreenState extends State<OnBoardingPageViewScreen> {
               }),
             ),
           ),
-          SizedBox(height: 40),
+
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24),
             child: RoundButton(
@@ -105,7 +101,7 @@ class _OnBoardingPageViewScreenState extends State<OnBoardingPageViewScreen> {
               btnheight: 48,
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 24),
           TextButton(
             style: TextButton.styleFrom(
               splashFactory: NoSplash.splashFactory,
@@ -120,7 +116,7 @@ class _OnBoardingPageViewScreenState extends State<OnBoardingPageViewScreen> {
             child: Text(
               'Login',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w700,
                 fontSize: 16,
                 letterSpacing: 0.5,
                 height: 24 / 16,

@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:mm_project/features/baby_screen/360_dialog.dart';
 import 'package:mm_project/styles/extensions/extensions.dart';
 import '../../styles/colors/colors_custom.dart';
 import '../../styles/layouts/sizes.dart';
+import 'baby_dialogbox.dart';
 
 class BabyDetailAppbar extends StatefulWidget {
   const BabyDetailAppbar({super.key});
@@ -36,7 +39,19 @@ class _BabyDetailAppbarState extends State<BabyDetailAppbar> {
                   height: 24 / 16,
                 ),
               ),
-              const Icon(LucideIcons.share, size: 24, color: Color(0xFF616161)),
+              InkWell(
+                child: const Icon(
+                  LucideIcons.share,
+                  size: 24,
+                  color: Color(0xFF616161),
+                ),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const Image360Dialog(),
+                  );
+                },
+              ),
             ],
           ).padOnly(left: Sizes.s16, top: Sizes.s64, right: Sizes.s20),
         ],

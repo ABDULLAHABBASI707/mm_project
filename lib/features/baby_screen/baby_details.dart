@@ -6,6 +6,7 @@ import 'package:mm_project/sdk/widgets/button_widget.dart';
 import '../../styles/colors/colors_custom.dart';
 import '../../styles/layouts/fonts.dart';
 import '../../styles/layouts/sizes.dart';
+import '360_dialog.dart';
 import 'baby_bottomsheet.dart';
 import 'babydetails_appbar.dart';
 
@@ -48,14 +49,16 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "MY BABY",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: FontSize.f12,
-                                color: const Color(0xFF7F67A1),
-                                letterSpacing: 0.5,
-                                height: 16 / 12,
+                            InkWell(
+                              child: Text(
+                                "MY BABY",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: FontSize.f12,
+                                  color: const Color(0xFF7F67A1),
+                                  letterSpacing: 0.5,
+                                  height: 16 / 12,
+                                ),
                               ),
                             ),
                             const SizedBox(height: 4),
@@ -123,11 +126,7 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                       children: [
                         infoColumn("Age", "36", "weeks", LucideIcons.calendar),
                         infoColumn("Weight", "4-6", "lb", LucideIcons.weight),
-                        infoColumn(
-                          "Size",
-                          "16-18",
-                          "inches",
-                          LucideIcons.ruler,
+                        infoColumn("Size", "16-18", "inches", LucideIcons.ruler,
                         ),
                       ],
                     ),
@@ -323,7 +322,6 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                           sizeUnit: "inches",
                         );
                       },
-
                       bgcolor: Color(0xFF7F67A1),
                       btnheight: 48,
                     ),
