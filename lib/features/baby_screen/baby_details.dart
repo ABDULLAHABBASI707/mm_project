@@ -71,46 +71,44 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                           ],
                         ),
                         const Spacer(),
-                        Container(
-                          height: 32,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: Sizes.s12,
-                          ),
-                          decoration: BoxDecoration(
-                            color: CustomColors.btncolor,
-                            borderRadius: BorderRadius.circular(Sizes.s40),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children:  [
-                             // SizedBox(width: Sizes.s2),
-                              Icon(
-                                LucideIcons.pencil,
-                                size: Sizes.s14,
-                                color: Color(0xFF616161),
-                              ),
-                              SizedBox(width: Sizes.s8),
-                              InkWell(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => const BabyDialogScreen(),
-                                  );
-                                },
-                                child: Text(
+                        InkWell(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => const BabyDialogScreen(),
+                            );
+                          },
+                          borderRadius: BorderRadius.circular(Sizes.s40),
+                          child: Container(
+                            height: 32,
+                            padding: const EdgeInsets.symmetric(horizontal: Sizes.s12),
+                            decoration: BoxDecoration(
+                              color: CustomColors.btncolor,
+                              borderRadius: BorderRadius.circular(Sizes.s40),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  LucideIcons.pencil,
+                                  size: Sizes.s14,
+                                  color: const Color(0xFF616161),
+                                ),
+                                const SizedBox(width: Sizes.s8),
+                                Text(
                                   "Edit",
                                   style: TextStyle(
-                                    color: Color(0xFF090909),
+                                    color: const Color(0xFF090909),
                                     fontSize: FontSize.f14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-
-                              ),
-                              SizedBox(width: 10,)
-                            ],
+                                const SizedBox(width: 10),
+                              ],
+                            ),
                           ),
                         ),
+
                       ],
                     ),
                   ),

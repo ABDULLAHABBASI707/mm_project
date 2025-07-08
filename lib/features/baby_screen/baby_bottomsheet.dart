@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:mm_project/images/svgs/assets_path/assets_path.dart';
 
 class BabyShareBottomSheet extends StatelessWidget {
   final String babyName;
@@ -30,8 +32,8 @@ class BabyShareBottomSheet extends StatelessWidget {
         height: 720,
         width: double.infinity,
         decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          color: Color(0xFFFFFFFF),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -39,13 +41,12 @@ class BabyShareBottomSheet extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(top: 8),
               height: 4,
-              width: 40,
+              width: 32,
               decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(2),
+                color: Color(0xFFE0E0E0),
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -60,10 +61,8 @@ class BabyShareBottomSheet extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-
                   _buildBabyCard(),
                   SizedBox(height: 24),
-
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Align(
@@ -79,7 +78,6 @@ class BabyShareBottomSheet extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 24),
                   Padding(
                     padding: const EdgeInsets.only(left: 16, right: 16),
@@ -88,44 +86,72 @@ class BabyShareBottomSheet extends StatelessWidget {
                       children: [
                         infoColumn("Age", "36", "weeks", LucideIcons.calendar),
                         infoColumn("Weight", "4-6", "lb", LucideIcons.weight),
-                        infoColumn(
-                          "Size",
-                          "16-18",
-                          "inches",
-                          LucideIcons.ruler,
+                        infoColumn("Size", "16-18", "inches", LucideIcons.ruler,
                         ),
                       ],
                     ),
                   ),
                   SizedBox(height: 24),
-                  Divider(
-                    color: Color(0xFFE0E0E0), // light grey
-                    thickness: 1,
-                    height: 1,
+                  Divider(color: Color(0xFFE0E0E0), thickness: 1, height: 1),
+
+                  SizedBox(height: 16),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      bottom: 16,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildShareOption(
+                          "Copy Link",
+                          Icon(
+                            LucideIcons.link,
+                            size: 24,
+                            color: const Color(0xFF090909),
+                          ),
+                          () {},
+                        ),
+                        _buildShareOption(
+                          "Facebook",
+                          SvgPicture.asset(
+                            facebook,
+                            height: 24,
+                          //  color: const Color(0xFF090909),
+                          ),
+                          () {},
+                        ),
+                        _buildShareOption(
+                          "SMS",
+                          Icon(
+                            LucideIcons.messageCircle,
+                            size: 24,
+                            color: const Color(0xFF090909),
+                          ),
+                          () {},
+                        ),
+                        _buildShareOption(
+                          "Email",
+                          Icon(
+                            LucideIcons.mail,
+                            size: 24,
+                            color: const Color(0xFF090909),
+                          ),
+                          () {},
+                        ),
+                      ],
+                    ),
                   ),
-
-                  SizedBox(height: 30),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _buildShareOption("Copy Link", LucideIcons.link, () {}),
-                      _buildShareOption(
-                        "Facebook",
-                        LucideIcons.facebook,
-                        () {},
-                      ),
-                      _buildShareOption(
-                        "SMS",
-                        LucideIcons.messageCircle,
-                        () {},
-                      ),
-                      _buildShareOption("Email", LucideIcons.mail, () {}),
-                    ],
-                  ),
-
-                  //  const SizedBox(height: 20),
                 ],
+              ),
+            ),
+            Container(
+              height: 5,
+              width: 139,
+              decoration: BoxDecoration(
+                color: Color(0XFF090909),
+                borderRadius: BorderRadius.circular(100),
               ),
             ),
           ],
@@ -140,7 +166,7 @@ class BabyShareBottomSheet extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient:  LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [Color(0xFFE1C7F0), Color(0xFFF5E6FF)],
@@ -198,7 +224,11 @@ class BabyShareBottomSheet extends StatelessWidget {
     );
   }
 
-  Widget _buildShareOption(String label, IconData icon, VoidCallback onTap) {
+  Widget _buildShareOption(
+    String label,
+    Widget iconWidget,
+    VoidCallback onTap,
+  ) {
     return GestureDetector(
       onTap: onTap,
       child: Column(
@@ -209,14 +239,16 @@ class BabyShareBottomSheet extends StatelessWidget {
               color: const Color(0xFFF5F5F5),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(icon, size: 24, color: const Color(0xFF090909)),
+            child: iconWidget,
           ),
           const SizedBox(height: 8),
           Text(
             label,
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: 14,
               fontWeight: FontWeight.w500,
+              height: 20 / 14,
+              letterSpacing: 0.4,
               color: Color(0xFF090909),
             ),
           ),
@@ -225,7 +257,6 @@ class BabyShareBottomSheet extends StatelessWidget {
     );
   }
 
-  // // Static method to show the bottom sheet
   static void show(
     BuildContext context, {
     required String babyName,

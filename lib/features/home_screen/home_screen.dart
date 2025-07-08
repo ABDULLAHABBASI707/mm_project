@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mm_project/styles/colors/colors.dart';
 import 'package:mm_project/styles/extensions/extensions.dart';
+import '../../sdk/widgets/custom_navbar.dart';
 import '../../sdk/widgets/home_widget.dart';
 import '../../styles/layouts/fonts.dart';
 import '../../styles/layouts/sizes.dart';
@@ -16,10 +18,17 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  bool _isAddActive = false;
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+    });
+  }
+
+  void _handleAddPressed() {
+    setState(() {
+      _isAddActive = !_isAddActive;
     });
   }
 
@@ -50,22 +59,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontSize: FontSize.f24,
                               ),
                             ),
-                          //SizedBox(width: 143),
-                           badges.Badge(
-                             badgeStyle: badges.BadgeStyle(
-                               badgeColor: CustomColors.ember,
-                             ),
-                             badgeContent: Text('12',
-                               style: TextStyle(
-                                   color: CustomColors.white,
-                                 fontSize: FontSize.f10,
-                                 fontWeight: FontWeight.w600,
-                               ),),
-                             child: Icon(Icons.notifications_none,size:26),
-                           ),
-                           // Image.asset('assets/Notification.png', height: 40),
+                            badges.Badge(
+                              badgeStyle: badges.BadgeStyle(
+                                badgeColor: CustomColors.ember,
+                              ),
+                              badgeContent: Text(
+                                '12',
+                                style: TextStyle(
+                                  color: CustomColors.white,
+                                  fontSize: FontSize.f10,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              child: Icon(Icons.notifications_none, size: 26),
+                            ),
                           ],
-                        ).padOnly(left: Sizes.s16, top: Sizes.s64, right: Sizes.s80),
+                        ).padOnly(
+                          left: Sizes.s16,
+                          top: Sizes.s64,
+                          right: Sizes.s80,
+                        ),
                       ],
                     ),
                   ),
@@ -105,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   letterSpacing: 1.2,
                                 ),
                               ),
-                              SizedBox(height: 4),
+                              const SizedBox(height: 4),
                               Text(
                                 "Elizabeth",
                                 style: TextStyle(
@@ -116,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             height: Sizes.s32,
                             padding: const EdgeInsets.symmetric(
@@ -147,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: Sizes.s6),
+                                const SizedBox(width: Sizes.s6),
                                 Icon(
                                   Icons.arrow_forward_ios,
                                   size: Sizes.s14,
@@ -167,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 headingTextWithIcon("BumpEd"),
-                SizedBox(height: Sizes.s16),
+                const SizedBox(height: Sizes.s16),
                 CardWidget(
                   heading: "Set lesson preferences",
                   description:
@@ -175,9 +188,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   buttonText: "Add Preferences",
                   iconPath: 'assets/Group 2610515.png',
                 ),
-                SizedBox(height: Sizes.s32),
+                const SizedBox(height: Sizes.s32),
                 headingTextWithIcon("My goals this week"),
-                SizedBox(height: Sizes.s16),
+                const SizedBox(height: Sizes.s16),
                 CardWidget(
                   heading: "Set goal preferences",
                   description:
@@ -185,9 +198,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   buttonText: "Add Preferences",
                   iconPath: 'assets/Simple-Illustration.png',
                 ),
-                SizedBox(height: Sizes.s32),
+                const SizedBox(height: Sizes.s32),
                 headingTextWithIcon("Recommendations"),
-                SizedBox(height: Sizes.s16),
+                const SizedBox(height: Sizes.s16),
                 CardWidget(
                   heading: "Take diet Assessment",
                   description:
@@ -195,113 +208,37 @@ class _HomeScreenState extends State<HomeScreen> {
                   buttonText: "Take Assessment",
                   iconPath: 'assets/Group 2610507.png',
                 ),
-                SizedBox(height: 85),
+                const SizedBox(height: 85),
               ],
             ).padSymmetric(hor: Sizes.s16),
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        height: 85,
-        decoration: BoxDecoration(
-          color: CustomColors.white,
-          boxShadow: [
-            BoxShadow(
-              color: CustomColors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: Offset(0, -2),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildNavItem(Icons.home_outlined, "Home", 0),
-            _buildNavItem(Icons.menu_book_outlined, "Library", 1),
-            _buildAddButton(),
-            _buildNavItem(Icons.restaurant_menu_outlined, "Recipes", 3),
-            _buildNavItem(Icons.grid_view_rounded, "Browse", 4),
-          ],
-        ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
+        onAddPressed: _handleAddPressed,
+        isAddButtonActive: _isAddActive,
       ),
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, int index) {
-    final isSelected = _selectedIndex == index;
-    return GestureDetector(
-      onTap: () => _onItemTapped(index),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: Sizes.s24,
-            height: Sizes.s24,
-            child: Icon(
-              icon,
-              size: Sizes.s24,
-              color: isSelected ? CustomColors.purpule600 : Color(0xFF616161),
-            ),
+  Widget headingTextWithIcon(String? headingText) => Row(
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(left: Sizes.s16),
+        child: Text(
+          headingText ?? "",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: CustomColors.black,
+            fontSize: FontSize.f20,
           ),
-          SizedBox(height: Sizes.s4),
-          Text(
-            label,
-            textAlign: TextAlign.center,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontFamily: 'Neue Haas Grotesk Display Pro',
-              fontWeight: FontWeight.w500,
-              fontSize: Sizes.s11,
-              height: 16 / 11,
-              letterSpacing: 0.5,
-              color: isSelected ? CustomColors.black50 : Color(0xFF616161),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAddButton() {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        width: Sizes.s32,
-        height: Sizes.s32,
-        padding: EdgeInsets.all(Sizes.s4),
-        decoration: BoxDecoration(
-          color: CustomColors.purpule600,
-          borderRadius: BorderRadius.circular(40),
-          boxShadow: [
-            BoxShadow(
-              color: CustomColors.purpule600.withOpacity(0.3),
-              blurRadius: 12,
-              offset: Offset(0, 4),
-            ),
-          ],
         ),
-        child: Icon(Icons.add, color: Colors.white, size: Sizes.s24),
       ),
-    );
-  }
+      const SizedBox(width: Sizes.s12),
+      Icon(LucideIcons.info,size: 16,)
+
+    ],
+  );
 }
-
-Widget headingTextWithIcon(String? headingText) => Row(
-  children: [
-    Padding(
-      padding: const EdgeInsets.only(left: Sizes.s16),
-      child: Text(
-        headingText ?? "",
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          color: CustomColors.black,
-          fontSize: FontSize.f20,
-        ),
-      ),
-    ),
-    const SizedBox(width: Sizes.s12),
-    Image.asset('assets/Icon Library.png', height: Sizes.s16),
-  ],
-);

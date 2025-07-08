@@ -4,6 +4,7 @@ import 'package:mm_project/features/login_screen/password_recovery.dart';
 import 'package:mm_project/styles/colors/colors.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import '../../sdk/widgets/onboarding_btn.dart';
+import '../baby_screen/baby_details.dart';
 
 class LoginScreen extends StatelessWidget {
   final FormGroup form = FormGroup({
@@ -55,7 +56,10 @@ class LoginScreen extends StatelessWidget {
                   decoration: _inputDecoration("• • • • • • •"),
                 ),
                 const SizedBox(height: 24),
-                GenericButton(text: "Login", color: Colors.white),
+                GenericButton(text: "Login", color: Colors.white,onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>BabyDetailsScreen()));
+
+                },),
                 const SizedBox(height: 12),
                 TextButton(
                   onPressed: () {

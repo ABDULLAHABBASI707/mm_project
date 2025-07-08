@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../images/svgs/assets_path/assets_path.dart';
+import '../../sdk/widgets/button_widget.dart';
 import '../../sdk/widgets/onboarding_btn.dart';
 import '../../sdk/widgets/onboarding_widget.dart';
 import '../login_screen/login_screen.dart';
@@ -47,8 +48,7 @@ class _OnBoardingPageViewScreenState extends State<OnBoardingPageViewScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 168),
-            child: SizedBox(height: 100),
+            padding: const EdgeInsets.only(top: 168,bottom: 100),
           ),
           Expanded(
             child: PageView.builder(
@@ -94,12 +94,15 @@ class _OnBoardingPageViewScreenState extends State<OnBoardingPageViewScreen> {
               }),
             ),
           ),
-          //  SizedBox(height: 40),
+          SizedBox(height: 40),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24),
-            child: GenericButton(
-              color: Theme.of(context).primaryColor,
-              text: "Get Started",
+            child: RoundButton(
+              btnwidth: double.infinity,
+              title: "Get Started",
+              onTap: () {},
+              bgcolor: Color(0xFF7F67A1),
+              btnheight: 48,
             ),
           ),
           SizedBox(height: 20),
@@ -109,9 +112,21 @@ class _OnBoardingPageViewScreenState extends State<OnBoardingPageViewScreen> {
               overlayColor: Colors.transparent,
             ),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+              );
             },
-            child: Text('Login', style: TextStyle(fontWeight: FontWeight.bold)),
+            child: Text(
+              'Login',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                letterSpacing: 0.5,
+                height: 24 / 16,
+                color: Color(0xFF7F67A1),
+              ),
+            ),
           ),
           SizedBox(height: 24),
         ],
