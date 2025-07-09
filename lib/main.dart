@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mm_project/features/home_screen/home_screen.dart';
+import 'package:mm_project/styles/fonts_name.dart';
+import 'package:mm_project/styles/themes/theme_light.dart';
 import 'features/baby_screen/baby_details.dart';
 import 'features/home_screen/diet_assessment.dart';
 import 'features/log_weight/logweight_homescreen.dart';
@@ -18,9 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: ThemeLight.lightTheme,
       home: OnBoardingPageViewScreen(),
       debugShowCheckedModeBanner: false,
     );

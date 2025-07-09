@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mm_project/sdk/widgets/onboarding_btn.dart';
 import 'package:mm_project/styles/colors/colors.dart';
 
+import '../../sdk/widgets/button_widget.dart';
+import '../../styles/colors/colors_theme_ext.dart';
+
 class DietAssessment extends StatefulWidget {
   const DietAssessment({super.key});
 
@@ -12,16 +15,19 @@ class DietAssessment extends StatefulWidget {
 class _DietAssessmentState extends State<DietAssessment> {
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>();
+    final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: true,
         centerTitle: true,
         title: Text(
           "Assessment",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: CustomColors.black900,
+          style: theme.textTheme.titleSmall?.copyWith(
+            color: CustomColors.neutral900,
+            letterSpacing: 0.4,
           ),
         ),
       ),
@@ -137,9 +143,15 @@ class _DietAssessmentState extends State<DietAssessment> {
               padding: const EdgeInsets.only(left: 54, right: 24),
               child: Column(
                 children: [
-                  TextField(decoration: assestmentField("")),
-                  const SizedBox(height: 8),
-                  GenericButton(text: "View Result", onPressed: () {}),
+                  // TextField(decoration: assestmentField("")),
+                  // const SizedBox(height: 8),
+                  RoundButton(
+                    btnwidth: double.infinity,
+                    title: "View Result",
+                    onTap: () {},
+                    bgcolor: Color(0xFFEFF0F6),
+                    btnheight: 48,
+                  ),
                   SizedBox(height: 16),
                 ],
               ),

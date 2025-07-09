@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:mm_project/sdk/widgets/custom_appbar.dart';
 import 'package:mm_project/styles/colors/colors.dart';
 import 'package:mm_project/styles/extensions/extensions.dart';
 import '../../sdk/widgets/custom_navbar.dart';
 import '../../sdk/widgets/home_widget.dart';
+import '../../styles/colors/colors_theme_ext.dart';
 import '../../styles/layouts/fonts.dart';
 import '../../styles/layouts/sizes.dart';
+import 'diet_assessment.dart';
 import 'mygoal_screen.dart';
 import 'package:badges/badges.dart' as badges;
 
@@ -34,8 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>();
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: CustomColors.neutral100,
+      backgroundColor: colors?.bodyTextColor,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -49,36 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: BoxDecoration(color: CustomColors.purpule),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Hi,Angel",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: FontSize.f24,
-                              ),
-                            ),
-                            badges.Badge(
-                              badgeStyle: badges.BadgeStyle(
-                                badgeColor: CustomColors.ember,
-                              ),
-                              badgeContent: Text(
-                                '12',
-                                style: TextStyle(
-                                  color: CustomColors.white,
-                                  fontSize: FontSize.f10,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              child: Icon(Icons.notifications_none, size: 26),
-                            ),
-                          ],
-                        ).padOnly(
-                          left: Sizes.s16,
-                          top: Sizes.s64,
-                          right: Sizes.s80,
-                        ),
+                       CustomAppBar(),
                       ],
                     ),
                   ),
@@ -147,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => MygoalScreen(),
+                                        builder: (context) => DietAssessment(),
                                       ),
                                     );
                                   },
@@ -179,7 +155,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                headingTextWithIcon("BumpEd"),
+                headingTextWithIcon("BumpEd",
+
+                ),
                 const SizedBox(height: Sizes.s16),
                 CardWidget(
                   heading: "Set lesson preferences",
@@ -237,8 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       const SizedBox(width: Sizes.s12),
-      Icon(LucideIcons.info,size: 16,)
-
+      Icon(LucideIcons.info, size: 16),
     ],
   );
 }

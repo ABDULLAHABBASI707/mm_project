@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mm_project/features/login_screen/password_recovery.dart';
 import 'package:mm_project/sdk/widgets/button_widget.dart';
 import 'package:mm_project/styles/colors/colors.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import '../../sdk/widgets/onboarding_btn.dart';
+import '../../styles/colors/colors_theme_ext.dart';
 import '../baby_screen/baby_details.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -19,7 +20,10 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>();
+    final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       body: ReactiveForm(
         formGroup: form,
         child: SafeArea(
@@ -57,7 +61,13 @@ class LoginScreen extends StatelessWidget {
                 ReactiveTextField<String>(
                   formControlName: 'password',
                   obscureText: true,
-                  decoration: _inputDecoration("• • • • • • •"),
+                  decoration: _inputDecoration("• • • • • • •").copyWith(
+                    suffixIcon: Icon(
+                      LucideIcons.chevronDown,
+                      size: 16,
+                      color: Color(0xFF575D75),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 32),
                 RoundButton(
@@ -84,14 +94,10 @@ class LoginScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     "Forgot your password?",
-                    style: TextStyle(
-                      color: Color(0xFF7F67A1),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      letterSpacing: 0.5,
-                      height: 24 / 14,
+                    style: theme.textTheme.displaySmall?.copyWith(
+                      color: CustomColors.purpule600,
                     ),
                   ),
                 ),
@@ -102,20 +108,18 @@ class LoginScreen extends StatelessWidget {
                   "Continue with Google",
                   "assets/svgs/goggle_logo.svg",
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 16),
                 _buildSocialButton(
                   "Continue with Facebook",
                   "assets/svgs/fb_logo.svg",
                 ),
                 const SizedBox(height: 32),
-                const Text(
+                Text(
                   "We will never share your data",
-                  style: TextStyle(
-                    color: Color(0xFF616161),
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    height: 16 / 12,
-                    letterSpacing: 0.4,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    decoration: TextDecoration.underline,
+                    color: CustomColors.grey,
+                    decorationColor: CustomColors.grey,
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -132,8 +136,9 @@ class LoginScreen extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Text(
         text,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 16,
+          color: Color(0XFF212121),
           fontWeight: FontWeight.w500,
           height: 24 / 16,
           letterSpacing: 0.4,
@@ -194,6 +199,7 @@ class LoginScreen extends StatelessWidget {
             fontSize: 16,
             fontWeight: FontWeight.w500,
             letterSpacing: 0.5,
+            height: 24 / 16,
             color: CustomColors.black900,
           ),
         ),

@@ -51,7 +51,6 @@ class CardWidget extends StatelessWidget {
                     ),
                   ),
 
-
                   SizedBox(height: Sizes.s12),
                   ButtonWidget(buttonText: buttonText),
                 ],

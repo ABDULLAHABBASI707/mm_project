@@ -67,7 +67,7 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: FontSize.f24,
-                                height: 32/24,
+                                height: 32 / 24,
                                 color: Color(0xFF090909),
                               ),
                             ),
@@ -84,7 +84,9 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                           borderRadius: BorderRadius.circular(Sizes.s40),
                           child: Container(
                             height: 32,
-                            padding: const EdgeInsets.symmetric(horizontal: Sizes.s12),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: Sizes.s12,
+                            ),
                             decoration: BoxDecoration(
                               color: CustomColors.btncolor,
                               borderRadius: BorderRadius.circular(Sizes.s40),
@@ -111,28 +113,28 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                             ),
                           ),
                         ),
-
                       ],
                     ),
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                    ),
+                    padding: const EdgeInsets.only(left: 16, right: 16),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         infoColumn("Age", "36", "weeks", LucideIcons.calendar),
                         infoColumn("Weight", "4-6", "lb", LucideIcons.weight),
-                        infoColumn("Size", "16-18", "inches", LucideIcons.ruler,
+                        infoColumn(
+                          "Size",
+                          "16-18",
+                          "inches",
+                          LucideIcons.ruler,
                         ),
                       ],
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(left: 16,right: 16,top: 20),
+                    margin: const EdgeInsets.only(left: 16, right: 16, top: 20),
                     height: 112,
                     decoration: BoxDecoration(
                       color: const Color(0xFFF5F5F5),
@@ -158,10 +160,7 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
 
                         Flexible(
                           child: Padding(
-                            padding: const EdgeInsets.only(
-                              right:20,
-                              left: 16,
-                            ),
+                            padding: const EdgeInsets.only(right: 20, left: 16),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,

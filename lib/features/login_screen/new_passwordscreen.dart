@@ -4,6 +4,8 @@ import 'package:mm_project/features/home_screen/home_screen.dart';
 import 'package:mm_project/sdk/widgets/onboarding_btn.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import '../../images/svgs/assets_path/assets_path.dart';
+import '../../sdk/widgets/button_widget.dart';
+import '../../styles/colors/colors_custom.dart';
 
 class NewPasswordScreen extends StatefulWidget {
   const NewPasswordScreen({super.key});
@@ -31,7 +33,8 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.white,
+      appBar: AppBar(backgroundColor: Colors.white),
       body: ReactiveForm(
         formGroup: form,
         child: Padding(
@@ -67,14 +70,17 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                 showError: true,
               ),
               const SizedBox(height: 32),
-              GenericButton(
-                text: "Confirm",
-                onPressed: () {
+              RoundButton(
+                btnwidth: double.infinity,
+                title: "Confirm",
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => HomeScreen()),
                   );
                 },
+                bgcolor: CustomColors.purple,
+                btnheight: 48,
               ),
             ],
           ),

@@ -20,7 +20,7 @@ class Image360Dialog extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SvgPicture.asset(baby_img,height: 28,width: 80,),
+              SvgPicture.asset(baby_img, height: 28, width: 80),
               const SizedBox(height: 16),
               const Text(
                 '360° image',

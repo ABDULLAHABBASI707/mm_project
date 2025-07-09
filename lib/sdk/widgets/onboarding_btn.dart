@@ -20,7 +20,10 @@ class GenericButton extends StatelessWidget {
       width: double.infinity,
       height: 48,
       child: ElevatedButton(
-        onPressed: onPressed ?? () {},
+
+        onPressed: onPressed ?? () {
+
+        },
 
         style: ElevatedButton.styleFrom(
           backgroundColor: Theme.of(context).primaryColor,

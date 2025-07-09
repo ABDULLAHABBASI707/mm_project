@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../styles/colors/colors_theme_ext.dart';
+
 class RoundButton extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
@@ -22,8 +24,13 @@ class RoundButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>();
+    final theme = Theme.of(context);
     return InkWell(
       onTap: onTap,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      hoverColor: Colors.transparent,
       child: Container(
         width: btnwidth,
         height: btnheight,
