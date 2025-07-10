@@ -3,14 +3,14 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mm_project/sdk/widgets/custom_appbar.dart';
 import 'package:mm_project/styles/colors/colors.dart';
 import 'package:mm_project/styles/extensions/extensions.dart';
+import '../../sdk/widgets/baby_container.dart';
 import '../../sdk/widgets/custom_navbar.dart';
 import '../../sdk/widgets/home_widget.dart';
 import '../../styles/colors/colors_theme_ext.dart';
 import '../../styles/layouts/fonts.dart';
 import '../../styles/layouts/sizes.dart';
-import 'diet_assessment.dart';
-import 'mygoal_screen.dart';
-import 'package:badges/badges.dart' as badges;
+import '../baby_screen/baby_details.dart';
+import '../log_weight/logweight_homescreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,6 +27,18 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _selectedIndex = index;
     });
+    if (_selectedIndex == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LogWeightHomeScreen()),
+      );
+    }
+    if (_selectedIndex == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => BabyDetailsScreen()),
+      );
+    }
   }
 
   void _handleAddPressed() {
@@ -52,112 +64,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     height: 358,
                     decoration: BoxDecoration(color: CustomColors.purpule),
-                    child: Column(
-                      children: [
-                       CustomAppBar(),
-                      ],
-                    ),
+                    child: Column(children: [CustomAppBar()]),
                   ),
-                  Positioned(
-                    left: 20,
-                    right: 20,
-                    top: 300,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: Sizes.s16,
-                        vertical: Sizes.s12,
-                      ),
-                      height: 76,
-                      decoration: BoxDecoration(
-                        color: CustomColors.white,
-                        borderRadius: BorderRadius.circular(Sizes.s16),
-                        boxShadow: [
-                          BoxShadow(
-                            color: CustomColors.black.withOpacity(0.05),
-                            blurRadius: 10,
-                            offset: Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "MY BABY",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: FontSize.f12,
-                                  color: CustomColors.black600,
-                                  letterSpacing: 1.2,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                "Elizabeth",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: FontSize.f18,
-                                  color: CustomColors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          Container(
-                            height: Sizes.s32,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: Sizes.s12,
-                            ),
-                            decoration: BoxDecoration(
-                              color: CustomColors.btncolor,
-                              borderRadius: BorderRadius.circular(Sizes.s40),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => DietAssessment(),
-                                      ),
-                                    );
-                                  },
-                                  child: Text(
-                                    "More Detail",
-                                    style: TextStyle(
-                                      color: CustomColors.purpule600,
-                                      fontSize: FontSize.f14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: Sizes.s6),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: Sizes.s14,
-                                  color: CustomColors.purpule600,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  BabyContainer(),
                 ],
               ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                headingTextWithIcon("BumpEd",
-
-                ),
+                Align(child: headingTextWithIcon("BumpEd")),
                 const SizedBox(height: Sizes.s16),
                 CardWidget(
                   heading: "Set lesson preferences",
@@ -203,15 +119,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget headingTextWithIcon(String? headingText) => Row(
     children: [
-      Padding(
-        padding: const EdgeInsets.only(left: Sizes.s16),
-        child: Text(
-          headingText ?? "",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            color: CustomColors.black,
-            fontSize: FontSize.f20,
-          ),
+      SizedBox(width: 3,),
+      Text(
+        headingText ?? "",
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          color: CustomColors.black,
+          fontSize: FontSize.f20,
         ),
       ),
       const SizedBox(width: Sizes.s12),

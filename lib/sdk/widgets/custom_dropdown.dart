@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mm_project/styles/colors/colors.dart';
 
 class DropdownItem {
   final String label;
@@ -19,6 +20,7 @@ class CustomDropdown extends StatelessWidget {
     required this.items,
     required this.hintText,
     required this.onChanged,
+    required TextStyle textStyle,
   });
 
   @override
@@ -29,7 +31,11 @@ class CustomDropdown extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: Colors.deepPurple),
+        border: Border.all(
+          color: selectedItem == null
+              ? CustomColors.neutral300
+              : CustomColors.purpule600,
+        ),
         borderRadius: BorderRadius.circular(12),
       ),
       child: DropdownButtonHideUnderline(
@@ -37,10 +43,7 @@ class CustomDropdown extends StatelessWidget {
           value: selectedItem,
           isExpanded: true,
           icon: const Icon(Icons.keyboard_arrow_down),
-          hint: Text(
-            hintText,
-            style: const TextStyle(color: Colors.grey),
-          ),
+          hint: Text(hintText, style: const TextStyle(color: Colors.grey)),
           items: items.map((DropdownItem item) {
             return DropdownMenuItem<DropdownItem>(
               value: item,

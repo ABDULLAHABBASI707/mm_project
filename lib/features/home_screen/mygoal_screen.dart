@@ -27,49 +27,50 @@ class _MygoalScreenState extends State<MygoalScreen> {
               Container(
                 width: double.infinity,
                 color: CustomColors.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        InkWell(
-                          onTap: () => Navigator.pop(context),
-                          child: Icon(
-                            Icons.arrow_back,
-                            size: 24,
-                            color: CustomColors.navbar,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 16, right: 279),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () => Navigator.pop(context),
+                            child: Icon(
+                              Icons.arrow_back,
+                              size: 24,
+                              color: CustomColors.navbar,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 76),
-                        Text(
-                          "Goal Preferencea",
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: CustomColors.neutral900
+                          // SizedBox(width: 76),
+                          Text(
+                            "Goal Preferencea",
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              color: CustomColors.neutral900,
+                            ),
                           ),
+                        ],
+                      ),
+                      SizedBox(height: 32),
+                      Text(
+                        "Select 5 preference",
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: CustomColors.neutral900,
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 32),
-                    Text(
-                      "Select 5 preference",
-                      style: TextStyle(
-                        fontSize: FontSize.f20,
-                        fontWeight: FontWeight.w600,
-                        color: CustomColors.black900,
                       ),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      "Your weekly goal lorem ipsum dolor sit amet",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: FontSize.f14,
-                        color: CustomColors.black900,
-                        letterSpacing: 0.4,
+                      SizedBox(height: 4),
+                      Text(
+                        "Your weekly goal lorem ipsum dolor sit amet",
+                        style: theme.textTheme.displaySmall?.copyWith(
+                          color: CustomColors.neutral900,
+                          letterSpacing: 0.4,
+                        ),
                       ),
-                    ),
-                  ],
-                ).padSymmetric(hor: Sizes.s21, ver: Sizes.s20),
+                      SizedBox(height: 33),
+                    ],
+                  ).padSymmetric(hor: Sizes.s21, ver: Sizes.s20),
+                ),
               ),
 
               Padding(
@@ -82,7 +83,7 @@ class _MygoalScreenState extends State<MygoalScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    sectionTitle("Nutritional Management"),
+                    sectionTitle(context,"Nutritional Management"),
                     preferenceCard(
                       "Meal Planning & Preparation",
                       "I will eat at least one food from every food group\nevery day.",
@@ -104,7 +105,7 @@ class _MygoalScreenState extends State<MygoalScreen> {
                       "Learning about food composition, label reading,\n and nutrient density",
                     ),
 
-                    sectionTitle("Physical Activity"),
+                    sectionTitle(context,"Physical Activity"),
                     preferenceCard(
                       "Resistance Training",
                       "Strength-building exercises using weights,\n bands, or bodyweight",
@@ -126,7 +127,7 @@ class _MygoalScreenState extends State<MygoalScreen> {
                       "Organized workout plans with progression\n models and periodization",
                     ),
 
-                    sectionTitle("Behavioral Modification"),
+                    sectionTitle(context,"Behavioral Modification"),
                     preferenceCard(
                       "Habit Formation & Breaking",
                       "Creating positive routines and eliminating \ncounterproductive behaviors",
@@ -157,22 +158,21 @@ class _MygoalScreenState extends State<MygoalScreen> {
     );
   }
 
-  Widget sectionTitle(String title) {
+  Widget sectionTitle(BuildContext context,String title) {
+    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 8),
       child: Text(
         title,
-        style: TextStyle(
-          fontSize: FontSize.f15,
-          fontWeight: FontWeight.w600,
-          height: 20 / 15,
-          color: Color(0xFF090909),
+        style: theme.textTheme.titleSmall?.copyWith(
+          color: CustomColors.neutral900,
         ),
       ),
     );
   }
 
   Widget preferenceCard(String title, String subtitle) {
+    final theme = Theme.of(context);
     return Container(
       constraints: BoxConstraints(minHeight: 104),
       margin: const EdgeInsets.symmetric(vertical: Sizes.s6),
@@ -201,7 +201,7 @@ class _MygoalScreenState extends State<MygoalScreen> {
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: FontSize.f14,
-                  color: CustomColors.neutral700,
+                  color: CustomColors.neutral900,
                   height: 18 / 14,
                   letterSpacing: 0.4,
                 ),

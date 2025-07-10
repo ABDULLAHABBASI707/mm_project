@@ -136,7 +136,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildNavItem(LucideIcons.house, "Home", 0),
+          _buildNavItem(LucideIcons.house, "Home", 0,),
           _buildNavItem(LucideIcons.bookOpen, "Library", 1),
           _buildAddButton(),
           _buildNavItem(LucideIcons.chefHat, "Recipes", 3),

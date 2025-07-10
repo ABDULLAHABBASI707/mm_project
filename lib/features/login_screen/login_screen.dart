@@ -84,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                   bgcolor: Color(0xFF7F67A1),
                   btnheight: 48,
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 24),
                 TextButton(
                   onPressed: () {
                     Navigator.push(
@@ -94,6 +94,11 @@ class LoginScreen extends StatelessWidget {
                       ),
                     );
                   },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    overlayColor: Colors.transparent,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
                   child: Text(
                     "Forgot your password?",
                     style: theme.textTheme.displaySmall?.copyWith(
@@ -101,6 +106,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+
                 const SizedBox(height: 32),
                 _buildDividerWithOr(),
                 const SizedBox(height: 32),

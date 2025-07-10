@@ -4,7 +4,9 @@ class CustomColors {
 
   ///purpule
   static const Color purpule = Color(0xFFDECAF2);
+  static const Color purpule50=Color(0xFFF2EFF6);
   static const Color purpule600 = Color(0xFF7F67A1);
+
 
   //warm ember
   static const Color ember=Color(0xFFFF6727);
@@ -36,18 +38,18 @@ class CustomColors {
   ///neutral
   static const Color neutral100 = Color(0xFFF5F5F5);
   static const Color neutral200 = Color(0xFFE5E5E5);
-  static const Color neutral300 = Color(0xFFD4D4D4);
+  static const Color neutral300 = Color(0xFFE0E0E0);
   static const Color neutral400 = Color(0xFFA3A3A3);
-  static const Color neutral500 = Color(0xFF737373);
-  static const Color neutral600 = Color(0xFF525252);
-  static const Color neutral700 = Color(0xFF404040);
+  static const Color neutral500 = Color(0xFF9E9E9E);
+  static const Color neutral600 = Color(0xFF414558);
+  static const Color neutral700 = Color(0xFF616161);
   static const Color neutral800 = Color(0xFF424242);
   static const Color neutral900 = Color(0xFF090909);
   static const Color neutral1000 = Color(0xFF0A0A0A);
 
   ///btn
-  static const Color btncolor = Color(0xFFF2EFF6);
-  static const Color desciption = Color(0xFF424242);
+  static const Color btnColor = Color(0xFFF2EFF6);
+  static const Color description = Color(0xFF424242);
   static const Color bg =Color (0xFF00000008);
   static const Color navbar = Color(0xFF616161);
 

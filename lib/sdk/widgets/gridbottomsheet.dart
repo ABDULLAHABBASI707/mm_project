@@ -5,8 +5,11 @@ import 'package:mm_project/features/kick_counter/kickcounter_homescreen.dart';
 import 'package:mm_project/features/log_activity/log_activity.dart';
 import '../../images/svgs/assets_path/assets_path.dart';
 import '../../styles/colors/colors_custom.dart';
+import '../../styles/colors/colors_theme_ext.dart';
 
 Widget gridBottomSheet({required BuildContext context}) {
+  final colors = Theme.of(context).extension<AppColors>();
+  final theme = Theme.of(context);
   List<GridModel> list = [
     GridModel(
       iconPath: add_weight,

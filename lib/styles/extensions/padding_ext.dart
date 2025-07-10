@@ -7,10 +7,12 @@ extension PaddingExtension on Widget {
   Padding pad0() => Padding(
     padding: EdgeInsets.zero,
     child: this,
+
   );
   Padding pad1()=>Padding(
     padding: EdgeInsets.all(Sizes.s1),
     child: this,
+
   );
   Padding pad2()=>Padding(
     padding: EdgeInsets.all(Sizes.s2),
@@ -31,6 +33,7 @@ extension PaddingExtension on Widget {
     padding: EdgeInsets.all(Sizes.s5),
     child: this,
   );
+
   Padding pad6()=>Padding(
     padding: EdgeInsets.all(Sizes.s6),
     child: this,
@@ -52,7 +55,6 @@ extension PaddingExtension on Widget {
     padding: EdgeInsets.all(Sizes.s9),
     child: this,
   );
-
 
   Padding pad10()=>Padding(
     padding: EdgeInsets.all(Sizes.s10),
@@ -90,6 +92,7 @@ extension PaddingExtension on Widget {
     child: this,
 
   );
+
   Padding padSymmetric( {double ver = 0.0, double hor = 0.0}) => Padding(
     padding: EdgeInsets.symmetric(
       vertical: ver,
@@ -131,5 +134,9 @@ extension SizedBoxExtension on Widget{
     height: width,
     child: this,
   );
+}
+
+extension MarginExtension on Widget{
+  
 }
 

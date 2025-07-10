@@ -21,6 +21,7 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFFFFFF).withOpacity(0.9),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -88,7 +89,7 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                               horizontal: Sizes.s12,
                             ),
                             decoration: BoxDecoration(
-                              color: CustomColors.btncolor,
+                              color: CustomColors.btnColor,
                               borderRadius: BorderRadius.circular(Sizes.s40),
                             ),
                             child: Row(

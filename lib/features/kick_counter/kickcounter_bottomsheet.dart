@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:mm_project/features/kick_counter/kick_counter.dart';
 import 'package:mm_project/sdk/widgets/button_widget.dart';
 import 'package:mm_project/sdk/widgets/custom_date_picker.dart';
 import 'package:mm_project/sdk/widgets/custom_dropdown.dart';
 import 'package:mm_project/styles/colors/colors.dart';
 
-final TextEditingController _kickController = TextEditingController();
+import '../../sdk/widgets/reactivelabel_field.dart';
+
+
 DateTime? _startDate;
 DateTime? _endDate;
 DropdownItem? _selectedNote;
 
 final List<DropdownItem> _notes = [
-  DropdownItem(label: 'After lunch', dotColor: Colors.white, ),
-  // DropdownItem(label: 'Yoga', dotColor: Color(0xFF00B84A)),
-  // DropdownItem(label: 'Strength', dotColor: Color(0xFF8063FF)),
-  // DropdownItem(label: 'Meditation', dotColor: Color(0xFF00A8E1)),
+  DropdownItem(label: 'After lunch', dotColor: Colors.white),
 ];
 
 void showKickCounterBottomSheet(BuildContext context) {
+  final theme=Theme.of(context);
+  final form = FormGroup({
+    'kick': FormControl<String>(validators: [Validators.required]),
+  });
+
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -30,141 +35,127 @@ void showKickCounterBottomSheet(BuildContext context) {
         padding: MediaQuery.of(context).viewInsets,
         child: StatefulBuilder(
           builder: (context, setState) {
-            return Container(
-              width: double.infinity,
-              height: 590,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(2),
+            return ReactiveForm(
+              formGroup: form,
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 4,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(2),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      "Kick Counter",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18,
-                        color: Colors.black,
+                      const SizedBox(height: 16),
+                       Text(
+                        "Kick Counter",
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: CustomColors.neutral900,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                          width: 100,
-                          child: TextField(
-                            controller: _kickController,
-                            keyboardType: TextInputType.number,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 40,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black,
-                            ),
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: '0',
-                            ),
+                      const SizedBox(height: 24),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          ReactiveLabeledNumberField(
+                            formControlName: 'kick',
+                            labelText: 'kicks',
+                          ),
+
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      const Divider(thickness: 1, color: Color(0xFFEEEEEE)),
+                      const SizedBox(height: 14),
+
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Start',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 20),
-                          child: Text(
-                            'kicks',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.grey,
-                            ),
+                      ),
+                      const SizedBox(height: 8),
+                      CustomDatePicker(
+                        labelText: 'Start time',
+                        selectedDate: _startDate,
+                        onDatePicked: (date) => setState(() => _startDate = date),
+                      ),
+                      const SizedBox(height: 24),
+
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'End',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
                           ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    const Divider(thickness: 1, color: Color(0xFFEEEEEE)),
-                    const SizedBox(height: 14),
-
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Start',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    CustomDatePicker(
-                      labelText: 'Start time',
-                      selectedDate: _startDate,
-                      onDatePicked: (date) => setState(() => _startDate = date),
-                    ),
-                    const SizedBox(height: 24),
-
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'End',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        ),
+                      const SizedBox(height: 8),
+                      CustomDatePicker(
+                        labelText: 'End time',
+                        selectedDate: _endDate,
+                        onDatePicked: (date) => setState(() => _endDate = date),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    CustomDatePicker(
-                      labelText: 'End time',
-                      selectedDate: _endDate,
-                      onDatePicked: (date) => setState(() => _endDate = date),
-                    ),
-                    const SizedBox(height: 24),
+                      const SizedBox(height: 24),
 
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Notes',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    CustomDropdown(
-                      selectedItem: _selectedNote,
-                      items: _notes,
-                      hintText: '-- Choose --',
-                      onChanged: (value) => setState(() => _selectedNote = value),
-                    ),
-
-                    const SizedBox(height: 28),
-                    RoundButton(
-                      title: 'Add Weight',
-                      onTap: () {
-                        Navigator.pop(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const KickCounter2(),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Notes',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
                           ),
-                        );
-                      },
-                      bgcolor: CustomColors.purpule600,
-                      btnheight: 48,
-                      btnwidth: double.infinity,
-                    ),
-                    const SizedBox(height: 16),
-                  ],
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      CustomDropdown(
+                        selectedItem: _selectedNote,
+                        items: _notes,
+                        hintText: '-- Choose --',
+                        textStyle: const TextStyle(fontSize: 14),
+                        onChanged: (value) => setState(() => _selectedNote = value),
+                      ),
+
+                      const SizedBox(height: 28),
+                      ReactiveFormConsumer(
+                        builder: (context, formGroup, _) {
+                          return RoundButton(
+                            title: 'Add Weight',
+                            onTap: () {
+                              if (formGroup.valid) {
+                                Navigator.pop(context);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const KickCounter2(),
+                                  ),
+                                );
+                              }
+                            },
+                            bgcolor: formGroup.valid
+                                ? CustomColors.purpule600
+                                : CustomColors.purpule600.withOpacity(0.1),
+                            btnheight: 48,
+                            btnwidth: double.infinity,
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  ),
                 ),
               ),
             );

@@ -16,7 +16,7 @@ class KickcounterHomescreen extends StatelessWidget {
       top: false,
       child: Scaffold(
         backgroundColor: Colors.white,
-       appBar: KickcounterAppbar(),
+        appBar: KickcounterAppbar(),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -29,7 +29,10 @@ class KickcounterHomescreen extends StatelessWidget {
               ),
               child: Container(
                 margin: const EdgeInsets.all(30),
-                padding: const EdgeInsets.symmetric(vertical: 35, horizontal: 28),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 35,
+                  horizontal: 28,
+                ),
                 decoration: const BoxDecoration(
                   color: Color(0xFF00B5A6),
                   shape: BoxShape.circle,
@@ -67,42 +70,50 @@ class KickcounterHomescreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           "Add Manually",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20,
+                          style: theme.textTheme.bodyMedium?.copyWith(
                             color: CustomColors.neutral900,
                           ),
                         ),
                         const SizedBox(height: 6),
-                        const Text(
+                        Text(
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
                           "Forgot to start? now you can input manually lorem ipsum.",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF616161),
+                          style: theme.textTheme.displaySmall?.copyWith(
+                            color: CustomColors.neutral800,
+                            letterSpacing: 0.4,
                           ),
                         ),
                         const SizedBox(height: 16),
                         OutlinedButton(
                           onPressed: () => showKickCounterBottomSheet(context),
-                          style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: CustomColors.purpule600),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 24,
-                              vertical: 12,
-                            ),
-                          ),
-                          child: const Text(
+                          style:
+                              OutlinedButton.styleFrom(
+                                side: const BorderSide(
+                                  color: CustomColors.purpule600,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 24,
+                                  vertical: 12,
+                                ),
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                shadowColor: Colors.transparent,
+                              ).copyWith(
+                                overlayColor: MaterialStateProperty.all(
+                                  Colors.transparent,
+                                ),
+                              ),
+                          child: Text(
                             'Add Manual',
-                            style: TextStyle(
+                            style: theme.textTheme.headlineSmall?.copyWith(
                               color: CustomColors.purpule600,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
                             ),
                           ),
                         ),

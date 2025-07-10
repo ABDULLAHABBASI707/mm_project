@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:mm_project/styles/colors/colors.dart';
 
 class KickcounterAppbar extends StatelessWidget implements PreferredSizeWidget {
   const KickcounterAppbar({super.key});
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight); // 56.0 by default
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
@@ -16,21 +18,19 @@ class KickcounterAppbar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: const Icon(Icons.close, color: Color(0xFF616161)),
+        icon: Icon(Icons.close, color: CustomColors.neutral700),
       ),
-      title: const Text(
+      title: Text(
         "Kick Counter",
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 16,
-          color: Colors.black,
+        style: theme.textTheme.bodyMedium?.copyWith(
+          color: CustomColors.neutral900,
         ),
       ),
       centerTitle: true,
-      actions: const [
+      actions: [
         Padding(
           padding: EdgeInsets.only(right: 19),
-          child: Icon(LucideIcons.history, color: Color(0xFF616161)),
+          child: Icon(LucideIcons.history, color: CustomColors.neutral700),
         ),
       ],
     );

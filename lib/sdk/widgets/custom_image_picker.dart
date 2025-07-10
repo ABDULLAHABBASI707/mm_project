@@ -2,14 +2,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:mm_project/styles/colors/colors.dart';
 
 class CustomImagePicker extends StatelessWidget {
   final Function(File) onImagePicked;
 
-  const CustomImagePicker({
-    Key? key,
-    required this.onImagePicked,
-  }) : super(key: key);
+  const CustomImagePicker({Key? key, required this.onImagePicked})
+    : super(key: key);
 
   Future<void> _pickImage(BuildContext context) async {
     final picker = ImagePicker();
@@ -21,34 +20,42 @@ class CustomImagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: () => _pickImage(context),
       child: Container(
         height: 48,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        width: double.infinity,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey.shade300),
+          border: Border.all(color: CustomColors.neutral300),
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Camera or upload",
-              style: TextStyle(
-                color: Colors.grey.shade500,
-                fontSize: 16,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16, right: 4),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Camera or upload",
+                style: theme.textTheme.displayMedium?.copyWith(
+                  color: CustomColors.neutral900,
+                  letterSpacing: 0.4,
+                ),
               ),
-            ),
-            Container(
+              Container(
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                  color: Color(0xFFF5F5F5),
+                  color: CustomColors.neutral100,
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: Icon(LucideIcons.paperclip, color: Colors.indigo.shade900)),
-          ],
+                child: Icon(
+                  LucideIcons.paperclip,
+                  color: CustomColors.neutral600,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

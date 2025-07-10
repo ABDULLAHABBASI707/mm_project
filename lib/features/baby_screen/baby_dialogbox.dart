@@ -20,12 +20,15 @@ class _BabyDialogScreenState extends State<BabyDialogScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return SingleChildScrollView(
+
       scrollDirection: Axis.vertical,
       child: Dialog(
+
         insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 163),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        backgroundColor: Color(0xFFFFFFFF),
+        backgroundColor: Colors.white,
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
