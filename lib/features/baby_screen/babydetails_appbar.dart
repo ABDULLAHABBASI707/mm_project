@@ -17,6 +17,7 @@ class BabyDetailAppbar extends StatefulWidget {
 class _BabyDetailAppbarState extends State<BabyDetailAppbar> {
   @override
   Widget build(BuildContext context) {
+    final theme=Theme.of(context);
     return Container(
       height: 358,
       decoration: BoxDecoration(color: CustomColors.purpule),
@@ -25,25 +26,22 @@ class _BabyDetailAppbarState extends State<BabyDetailAppbar> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(
+               Icon(
                 LucideIcons.arrowLeft,
                 size: 24,
-                color: Color(0xFF616161),
+                color: CustomColors.neutral700,
               ),
-              const Text(
+               Text(
                 "Baby Details",
-                style: TextStyle(
-                  color: Color(0xFF090909),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  height: 24 / 16,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: CustomColors.neutral900,
                 ),
               ),
               InkWell(
-                child: const Icon(
+                child:  Icon(
                   LucideIcons.share,
                   size: 24,
-                  color: Color(0xFF616161),
+                  color: CustomColors.neutral700,
                 ),
                 onTap: () {
                   showDialog(

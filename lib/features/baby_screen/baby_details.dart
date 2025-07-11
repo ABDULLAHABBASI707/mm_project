@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mm_project/features/baby_screen/baby_dialogbox.dart';
 import 'package:mm_project/sdk/widgets/button_widget.dart';
 import '../../styles/colors/colors_custom.dart';
-import '../../styles/layouts/fonts.dart';
 import '../../styles/layouts/sizes.dart';
-import '360_dialog.dart';
 import 'baby_bottomsheet.dart';
 import 'babydetails_appbar.dart';
 
@@ -20,6 +17,7 @@ class BabyDetailsScreen extends StatefulWidget {
 class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF).withOpacity(0.9),
       body: SingleChildScrollView(
@@ -27,8 +25,8 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
           children: [
             BabyDetailAppbar(),
             DecoratedBox(
-              decoration: const BoxDecoration(
-                color: Color(0xFFFFFFFF),
+              decoration: BoxDecoration(
+                color: CustomColors.neutral,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(16),
                   topRight: Radius.circular(16),
@@ -53,23 +51,17 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                             InkWell(
                               child: Text(
                                 "MY BABY",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: FontSize.f12,
-                                  color: const Color(0xFF7F67A1),
-                                  letterSpacing: 0.5,
-                                  height: 16 / 12,
+                                style: theme.textTheme.titleMedium?.copyWith(
+                                  color: CustomColors.purpule600,
                                 ),
                               ),
                             ),
                             const SizedBox(height: 4),
-                            const Text(
+                            Text(
                               "Elizabeth Greaux",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: FontSize.f24,
-                                height: 32 / 24,
-                                color: Color(0xFF090909),
+                              style: theme.textTheme.headlineLarge?.copyWith(
+                                letterSpacing: 0.5,
+                                color: CustomColors.neutral600,
                               ),
                             ),
                           ],
@@ -89,7 +81,7 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                               horizontal: Sizes.s12,
                             ),
                             decoration: BoxDecoration(
-                              color: CustomColors.btnColor,
+                              color: CustomColors.neutral100,
                               borderRadius: BorderRadius.circular(Sizes.s40),
                             ),
                             child: Row(
@@ -103,11 +95,11 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                                 const SizedBox(width: Sizes.s8),
                                 Text(
                                   "Edit",
-                                  style: TextStyle(
-                                    color: const Color(0xFF090909),
-                                    fontSize: FontSize.f14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                  style: theme.textTheme.headlineSmall
+                                      ?.copyWith(
+                                        letterSpacing: 0.4,
+                                        color: CustomColors.neutral900,
+                                      ),
                                 ),
                                 const SizedBox(width: 10),
                               ],
@@ -123,9 +115,22 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        infoColumn("Age", "36", "weeks", LucideIcons.calendar),
-                        infoColumn("Weight", "4-6", "lb", LucideIcons.weight),
                         infoColumn(
+                          context,
+                          "Age",
+                          "36",
+                          "weeks",
+                          LucideIcons.calendar,
+                        ),
+                        infoColumn(
+                          context,
+                          "Weight",
+                          "4-6",
+                          "lb",
+                          LucideIcons.weight,
+                        ),
+                        infoColumn(
+                          context,
                           "Size",
                           "16-18",
                           "inches",
@@ -136,9 +141,9 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                   ),
                   Container(
                     margin: const EdgeInsets.only(left: 16, right: 16, top: 20),
-                    height: 112,
+                   // height: 112,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF5F5F5),
+                      color: CustomColors.neutral100,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -165,25 +170,19 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children:  [
                                 Text(
                                   'Your baby is now about the size of a pineapple',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    height: 18 / 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black,
+                                  style: theme.textTheme.displayLarge?.copyWith(
+                                    color: CustomColors.neutral900,
                                   ),
                                 ),
                                 Text(
                                   'Your little one is growing fast and getting ready for birth!',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    height: 18 / 14,
+                                  style: theme.textTheme.displaySmall?.copyWith(
+                                    color: CustomColors.neutral900,
                                     letterSpacing: 0.4,
-                                    color: Colors.black54,
-                                  ),
+                                  )
                                 ),
                               ],
                             ),
@@ -199,70 +198,85 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        sectionTitle('Development Milestones'),
+                        sectionTitle(context,'Development Milestones'),
                         milestoneItem(
+                          context,
                           'Lungs are almost fully developed',
                           'but still maturing.',
                         ),
                         milestoneItem(
+                          context,
                           'Baby is practicing breathing',
                           'by inhaling and exhaling amniotic fluid.',
                         ),
                         milestoneItem(
+                          context,
                           'Brain is rapidly developing,',
                           'with new neural connections forming daily.',
                         ),
                         milestoneItem(
+                          context,
                           'Kicks may feel stronger and more defined',
                           'as the baby has less space to move.',
                         ),
                         milestoneItem(
+                          context,
                           'Fat stores are increasing,',
                           'helping with temperature regulation after birth.',
                         ),
                         milestoneItem(
+                          context,
                           'Baby may be head-down',
                           '(but some babies turn later).',
                         ),
 
                         const SizedBox(height: 24),
-                        sectionTitle("What's Happening in Your Body?"),
+                        sectionTitle(context,"What's Happening in Your Body?"),
                         milestoneItem(
+                          context,
                           'Increased pressure on the bladder,',
                           'More frequent urination.',
                         ),
                         milestoneItem(
+                          context,
                           'Shortness of breath',
                           'as the baby pushes against your lungs.',
                         ),
                         milestoneItem(
+                          context,
                           'Braxton Hicks contractions,',
                           '(practice contractions) may become more noticeable.',
                         ),
                         milestoneItem(
+                          context,
                           'Colostrum (early breast milk)',
                           'might start leaking from your breasts.',
                         ),
 
                         const SizedBox(height: 24),
-                        sectionTitle("Tips for This Month"),
+                        sectionTitle(context,"Tips for This Month"),
                         milestoneItem(
+                          context,
                           "Monitor baby's movements",
                           '(kick counts) and report any major changes.',
                         ),
                         milestoneItem(
+                          context,
                           'Prepare for labor',
                           'pack your hospital bag, choose a birth plan.',
                         ),
                         milestoneItem(
+                          context,
                           'Eat iron-rich foods',
                           'to prevent anemia and stay hydrated.',
                         ),
                         milestoneItem(
+                          context,
                           'Get plenty of rest',
                           'and sleep on your side to improve circulation.',
                         ),
                         milestoneItem(
+                          context,
                           'If baby is breech',
                           'discuss options with your doctor for positioning.',
                         ),
@@ -289,26 +303,22 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                   children: [
                     Text(
                       "Stay updated with expert insights",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20,
-                        height: 28 / 20,
-                        color: Color(0xFF090909),
-                      ),
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        color: CustomColors.neutral900,
+                      )
                     ),
                     SizedBox(height: 12),
                     Text(
                       "Want to learn more about pregnancy health, baby care, and parenting tips?",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                      style: theme.textTheme.displaySmall?.copyWith(
+                        color: CustomColors.neutral900,
                         letterSpacing: 0.4,
-                        height: 20 / 14,
-                      ),
+                      )
                     ),
                     SizedBox(height: 24),
                     RoundButton(
                       btnwidth: double.infinity,
+                      btnheight: 48,
                       title: "Learn More",
                       onTap: () {
                         BabyShareBottomSheet.show(
@@ -322,8 +332,7 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
                           sizeUnit: "inches",
                         );
                       },
-                      bgcolor: Color(0xFF7F67A1),
-                      btnheight: 48,
+                      bgcolor: CustomColors.purpule600,
                     ),
                   ],
                 ),
@@ -336,39 +345,44 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
   }
 
   /// Section Header
-  Widget sectionTitle(String title) {
+  Widget sectionTitle(BuildContext context,String title) {
+    final theme=Theme.of(context);
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Text(
         title,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
-          height: 28 / 18,
-          color: Colors.black,
-        ),
+        style:theme.textTheme.bodyLarge?.copyWith(
+          color: CustomColors.neutral900,
+        )
       ),
     );
   }
 
-  Widget milestoneItem(String boldText, String subText) {
+  Widget milestoneItem(BuildContext context, String boldText, String subText) {
+    final theme=Theme.of(context);
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+           Text(
             "• ",
-            style: TextStyle(fontSize: 18, color: Color(0xFF9E9E9E)),
+            style: TextStyle(fontSize: 18, color: CustomColors.neutral500),
           ),
+          SizedBox(width: 8,),
           Expanded(
             child: RichText(
               text: TextSpan(
-                style: const TextStyle(fontSize: 14, color: Colors.black),
+                style: theme.textTheme.displaySmall?.copyWith(
+                  color: CustomColors.neutral900,
+                  letterSpacing: 0.4,
+                ),
                 children: [
                   TextSpan(
                     text: '$boldText\n',
-                    style: const TextStyle(fontWeight: FontWeight.w600),
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: CustomColors.neutral900,
+                    ),
                   ),
                   TextSpan(text: subText),
                 ],
@@ -381,21 +395,26 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
   }
 
   ///Info Column
-  Widget infoColumn(String title, String value, String unit, IconData icon) {
+  Widget infoColumn(
+    BuildContext context,
+    String title,
+    String value,
+    String unit,
+    IconData icon,
+  ) {
+    final theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            Icon(icon, size: 16, color: const Color(0xFF616161)),
+            Icon(icon, size: 16, color: CustomColors.neutral700),
             const SizedBox(width: 8),
             Text(
               title,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
+              style: theme.textTheme.displaySmall?.copyWith(
                 letterSpacing: 0.4,
-                color: Color(0xFF090909),
+                color: CustomColors.neutral900,
               ),
             ),
           ],
@@ -404,21 +423,15 @@ class _BabyDetailsScreenState extends State<BabyDetailsScreen> {
         Text.rich(
           TextSpan(
             text: '$value ',
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
-              height: 20 / 18,
+            style: theme.textTheme.bodyLarge?.copyWith(
+              color: CustomColors.neutral900,
             ),
             children: [
               TextSpan(
                 text: unit,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  height: 20 / 14,
+                style: theme.textTheme.displaySmall?.copyWith(
+                  color: CustomColors.neutral900,
                   letterSpacing: 0.4,
-                  color: Color(0xFF090909),
                 ),
               ),
             ],

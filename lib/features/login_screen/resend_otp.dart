@@ -79,7 +79,7 @@ class _ResendOtpScreenState extends State<ResendOtpScreen> {
                   MaterialPageRoute(builder: (context) => NewPasswordScreen()),
                 );
               },
-              bgcolor: CustomColors.purple,
+              bgcolor: CustomColors.purpule600,
               btnheight: 48,
             ),
           ),

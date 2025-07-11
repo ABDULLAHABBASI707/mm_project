@@ -16,7 +16,7 @@ class ThemeLight {
     scaffoldBackgroundColor: CustomColors.black,
     fontFamily: neueHaasGrotesk,
     appBarTheme:  AppBarTheme(
-      backgroundColor: CustomColors.purple,
+      backgroundColor: CustomColors.purpule600,
       elevation: 0,
       surfaceTintColor: Colors.blue,
     ),
@@ -26,7 +26,7 @@ class ThemeLight {
         headingTextColor: CustomColors.black,
         bodyTextColor: CustomColors.grey50,
         primaryColor: CustomColors.pink,
-        buttonBgColor: CustomColors.purple,
+        buttonBgColor: CustomColors.purpule600,
         gradientHome: CustomColors.homeGradient,
         greyBorderColor: CustomColors.grey200,
       ),

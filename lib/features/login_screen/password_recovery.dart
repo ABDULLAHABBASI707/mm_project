@@ -81,7 +81,7 @@ class _PasswordRecoveryState extends State<PasswordRecovery> {
                             ),
                           );
                         },
-                        bgcolor: CustomColors.purple,
+                        bgcolor: CustomColors.purpule600,
                         btnheight: 48,
                       ),
                     ],

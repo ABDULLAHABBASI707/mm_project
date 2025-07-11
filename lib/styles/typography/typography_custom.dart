@@ -59,7 +59,7 @@ class TypographyTextTheme {
     titleMedium:TextStyle(
       fontWeight: FontWeight.w700,
       fontSize: FontSize.f12,
-      color: CustomColors.purple,
+      color: CustomColors.purpule600,
     ),
     titleLarge: TextStyle(
       fontWeight: FontWeight.w700,

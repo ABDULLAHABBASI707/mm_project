@@ -40,7 +40,7 @@ class _MygoalScreenState extends State<MygoalScreen> {
                             child: Icon(
                               Icons.arrow_back,
                               size: 24,
-                              color: CustomColors.navbar,
+                              color: CustomColors.neutral700,
                             ),
                           ),
                           // SizedBox(width: 76),

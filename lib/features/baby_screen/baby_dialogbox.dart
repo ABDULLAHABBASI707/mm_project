@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mm_project/sdk/widgets/button_widget.dart';
 import 'package:mm_project/sdk/widgets/custom_date_picker.dart';
-
+import 'package:mm_project/styles/colors/colors_custom.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 class BabyDialogScreen extends StatefulWidget {
   const BabyDialogScreen({super.key});
@@ -12,59 +13,68 @@ class BabyDialogScreen extends StatefulWidget {
 }
 
 class _BabyDialogScreenState extends State<BabyDialogScreen> {
-  final TextEditingController _nameController = TextEditingController();
+  final FormGroup form = FormGroup({
+    'babyName': FormControl<String>(validators: [Validators.required]),
+  });
+
   DateTime? _selectedDate;
   bool _noNameYet = false;
   String? _selectedGender;
   final List<String> genders = ['Male', 'Female', 'Other'];
 
   @override
+  void initState() {
+    super.initState();
+    if (_noNameYet) form.control('babyName').markAsDisabled();
+  }
+
+  @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
-
       scrollDirection: Axis.vertical,
       child: Dialog(
-
         insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 163),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        backgroundColor: Colors.white,
+        backgroundColor: CustomColors.neutral,
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeading(context),
-                const SizedBox(height: 28),
-                _buildNameField(),
-                _buildNoNameCheckbox(),
-                const SizedBox(height: 24),
-                const Text(
-                  "Due Date",
-                  style: TextStyle(
-                    color: Color(0xFF212121),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    height: 24 / 16,
-                    letterSpacing: 0.4,
+            child: ReactiveForm(
+              formGroup: form,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildHeading(context),
+                  const SizedBox(height: 28),
+                  _buildNameField(context),
+                  _buildNoNameCheckbox(context),
+                  const SizedBox(height: 24),
+                  const Text(
+                    "Due Date",
+                    style: TextStyle(
+                      color: Color(0xFF212121),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      height: 24 / 16,
+                      letterSpacing: 0.4,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                CustomDatePicker(
-                  selectedDate: _selectedDate,
-                  onDatePicked: (date) {
-                    setState(() => _selectedDate = date);
-                  },
-                  labelText: "03/12/2025",
-                ),
-                const SizedBox(height: 24),
-                _buildSkinToneAndGender(),
-                const SizedBox(height: 24),
-                _buildActionButtons(),
-              ],
+                  const SizedBox(height: 8),
+                  CustomDatePicker(
+                    selectedDate: _selectedDate,
+                    onDatePicked: (date) {
+                      setState(() => _selectedDate = date);
+                    },
+                    labelText: "03/12/2025",
+                  ),
+                  const SizedBox(height: 24),
+                  _buildSkinToneAndGender(context),
+                  const SizedBox(height: 24),
+                  _buildActionButtons(),
+                ],
+              ),
             ),
           ),
         ),
@@ -73,50 +83,46 @@ class _BabyDialogScreenState extends State<BabyDialogScreen> {
   }
 
   Widget _buildHeading(BuildContext context) {
+    final theme=Theme.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
+         Text(
           "Your baby",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-            height: 24 / 16,
-          ),
+          style: theme.textTheme.titleSmall?.copyWith(
+            color: CustomColors.neutral900,
+          )
         ),
         GestureDetector(
           onTap: () => Navigator.pop(context),
-          child: const Icon(Icons.close, size: 24, color: Color(0xFF616161)),
+          child:  Icon(Icons.close, size: 24, color: CustomColors.neutral700,),
         ),
       ],
     );
   }
 
-  Widget _buildNameField() {
+  Widget _buildNameField(BuildContext context) {
+    final theme=Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+         Text(
           "Baby Name",
-          style: TextStyle(
-            color: Color(0xFF212121),
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
+          style: theme.textTheme.displayMedium?.copyWith(
+            color: CustomColors.neutral900,
             letterSpacing: 0.4,
-            height: 24 / 16,
           ),
         ),
         const SizedBox(height: 8),
-        TextField(
-          controller: _nameController,
-          enabled: !_noNameYet,
+        ReactiveTextField<String>(
+          formControlName: 'babyName',
           decoration: InputDecoration(
             hintText: "Input field",
+            hintStyle:theme.textTheme.displayMedium?.copyWith(
+              color: CustomColors.neutral500,
+            ) ,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 12,
-            ),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           ),
         ),
         const SizedBox(height: 12),
@@ -124,46 +130,47 @@ class _BabyDialogScreenState extends State<BabyDialogScreen> {
     );
   }
 
-  Widget _buildNoNameCheckbox() {
+  Widget _buildNoNameCheckbox(BuildContext context) {
+    final theme=Theme.of(context);
     return Row(
       children: [
         Checkbox(
           value: _noNameYet,
-          activeColor: const Color(0xFF7F67A1),
+          activeColor:CustomColors.purpule600,
           onChanged: (val) {
             setState(() {
               _noNameYet = val ?? false;
-              if (_noNameYet) _nameController.clear();
+              if (_noNameYet) {
+                form.control('babyName').reset();
+                form.control('babyName').markAsDisabled();
+              } else {
+                form.control('babyName').markAsEnabled();
+              }
             });
           },
         ),
-        const Text(
+         Text(
           "Don't have a name yet",
-          style: TextStyle(
-            color: Color(0xFF16171D),
-            fontWeight: FontWeight.w500,
-            fontSize: 14,
-            height: 20 / 14,
+          style:theme.textTheme.displaySmall?.copyWith(
+            color: CustomColors.neutral900,
           ),
         ),
       ],
     );
   }
 
-  Widget _buildSkinToneAndGender() {
+  Widget _buildSkinToneAndGender(BuildContext context) {
+    final theme=Theme.of(context);
     return Row(
       children: [
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+               Text(
                 "Skin tone",
-                style: TextStyle(
-                  color: Color(0xFF212121),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                  height: 24 / 16,
+                style: theme.textTheme.displayMedium?.copyWith(
+                  color: CustomColors.neutral900,
                   letterSpacing: 0.4,
                 ),
               ),
@@ -185,13 +192,10 @@ class _BabyDialogScreenState extends State<BabyDialogScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+               Text(
                 "Gender",
-                style: TextStyle(
-                  color: Color(0XFF212121),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                  height: 24 / 16,
+                style: theme.textTheme.displayMedium?.copyWith(
+                  color: CustomColors.neutral900,
                   letterSpacing: 0.4,
                 ),
               ),
@@ -206,19 +210,16 @@ class _BabyDialogScreenState extends State<BabyDialogScreen> {
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     value: _selectedGender,
-                    hint: const Text(
+                    hint:  Text(
                       "-- Choose --",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF9E9E9E),
-                        height: 24 / 16,
+                      style: theme.textTheme.displayMedium?.copyWith(
+                        color: CustomColors.neutral500,
                         letterSpacing: 0.4,
                       ),
                     ),
-                    icon: const Icon(
+                    icon:  Icon(
                       LucideIcons.chevronDown,
-                      color: Color(0xFF575D75),
+                      color: CustomColors.neutral500,
                       size: 16,
                     ),
                     isExpanded: true,
@@ -242,22 +243,23 @@ class _BabyDialogScreenState extends State<BabyDialogScreen> {
     return Padding(
       padding: const EdgeInsets.only(left: 59, right: 20, bottom: 20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           RoundButton(
             btnwidth: 100,
             btnheight: 48,
             title: "Cancel",
-            onTap: () {},
+            onTap: () => Navigator.pop(context),
             textColor: const Color(0xFF424242),
             bgcolor: const Color(0xFFFFFFFF),
             borderColor: const Color(0xFF424242),
           ),
+          SizedBox(width: 16,),
           RoundButton(
             btnwidth: 148,
             btnheight: 48,
             title: "Save Changes",
-            onTap: () {},
+            onTap: () => Navigator.pop(context),
             bgcolor: const Color(0xFF7F67A1),
           ),
         ],

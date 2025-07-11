@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mm_project/images/svgs/assets_path/assets_path.dart';
+import 'package:mm_project/styles/colors/colors.dart';
 
 class BabyShareBottomSheet extends StatelessWidget {
   final String babyName;
@@ -25,12 +26,13 @@ class BabyShareBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Color(0xFFFFFFFF),
+        decoration: BoxDecoration(
+          color: CustomColors.neutral,
           borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
         ),
         child: Column(
@@ -41,7 +43,7 @@ class BabyShareBottomSheet extends StatelessWidget {
               height: 4,
               width: 32,
               decoration: BoxDecoration(
-                color: Color(0xFFE0E0E0),
+                color: CustomColors.neutral300,
                 borderRadius: BorderRadius.circular(20),
               ),
             ),
@@ -50,14 +52,11 @@ class BabyShareBottomSheet extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Center(
+                  Center(
                     child: Text(
                       'Share your baby',
-                      style: TextStyle(
-                        fontSize: 18,
-                        height: 28 / 18,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF090909),
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        color: CustomColors.neutral900,
                       ),
                     ),
                   ),
@@ -66,25 +65,35 @@ class BabyShareBottomSheet extends StatelessWidget {
                   const SizedBox(height: 24),
                   Text(
                     "Elizabeth Greaux",
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 24,
-                      height: 32 / 24,
-                      color: Color(0xFF090909),
+                    style: theme.textTheme.headlineLarge?.copyWith(
+                      color: CustomColors.neutral900,
                     ),
                   ),
                   const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      infoColumn("Age", "36", ageUnit, LucideIcons.calendar),
                       infoColumn(
+                        context,
+                        "Age",
+                        "36",
+                        ageUnit,
+                        LucideIcons.calendar,
+                      ),
+                      infoColumn(
+                        context,
                         "Weight",
                         "4-6",
                         weightUnit,
                         LucideIcons.weight,
                       ),
-                      infoColumn("Size", "16-18", sizeUnit, LucideIcons.ruler),
+                      infoColumn(
+                        context,
+                        "Size",
+                        "16-18",
+                        sizeUnit,
+                        LucideIcons.ruler,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -104,34 +113,38 @@ class BabyShareBottomSheet extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _buildShareOption(
+                          context,
                           "Copy Link",
-                          const Icon(
+                          Icon(
                             LucideIcons.link,
                             size: 24,
-                            color: Color(0xFF090909),
+                            color: CustomColors.neutral900,
                           ),
                           () {},
                         ),
                         _buildShareOption(
+                          context,
                           "Facebook",
                           SvgPicture.asset(facebook, height: 24),
                           () {},
                         ),
                         _buildShareOption(
+                          context,
                           "SMS",
-                          const Icon(
+                          Icon(
                             LucideIcons.messageCircle,
                             size: 24,
-                            color: Color(0xFF090909),
+                            color: CustomColors.neutral900,
                           ),
                           () {},
                         ),
                         _buildShareOption(
+                          context,
                           "Email",
                           const Icon(
                             LucideIcons.mail,
                             size: 24,
-                            color: Color(0xFF090909),
+                            color: CustomColors.neutral900,
                           ),
                           () {},
                         ),
@@ -172,21 +185,26 @@ class BabyShareBottomSheet extends StatelessWidget {
     );
   }
 
-  Widget infoColumn(String title, String value, String unit, IconData icon) {
+  Widget infoColumn(
+    BuildContext context,
+    String title,
+    String value,
+    String unit,
+    IconData icon,
+  ) {
+    final theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            Icon(icon, size: 16, color: const Color(0xFF616161)),
+            Icon(icon, size: 16, color: CustomColors.neutral700),
             const SizedBox(width: 8),
             Text(
               title,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
+              style: theme.textTheme.displaySmall?.copyWith(
+                color: CustomColors.neutral900,
                 letterSpacing: 0.4,
-                color: Color(0xFF090909),
               ),
             ),
           ],
@@ -195,21 +213,15 @@ class BabyShareBottomSheet extends StatelessWidget {
         Text.rich(
           TextSpan(
             text: '$value ',
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
-              height: 20 / 18,
+            style: theme.textTheme.bodyLarge?.copyWith(
+              color: CustomColors.neutral900,
             ),
             children: [
               TextSpan(
                 text: unit,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  height: 20 / 14,
+                style: theme.textTheme.displaySmall?.copyWith(
+                  color: CustomColors.neutral900,
                   letterSpacing: 0.4,
-                  color: Color(0xFF090909),
                 ),
               ),
             ],
@@ -220,10 +232,12 @@ class BabyShareBottomSheet extends StatelessWidget {
   }
 
   Widget _buildShareOption(
+    BuildContext context,
     String label,
     Widget iconWidget,
     VoidCallback onTap,
   ) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Column(
@@ -231,7 +245,7 @@ class BabyShareBottomSheet extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: const Color(0xFFF5F5F5),
+              color: CustomColors.neutral100,
               borderRadius: BorderRadius.circular(12),
             ),
             child: iconWidget,
@@ -239,12 +253,9 @@ class BabyShareBottomSheet extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             label,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              height: 20 / 14,
+            style: theme.textTheme.displaySmall?.copyWith(
+              color: CustomColors.neutral900,
               letterSpacing: 0.4,
-              color: Color(0xFF090909),
             ),
           ),
         ],

@@ -36,6 +36,7 @@ class CustomColors {
 
 
   ///neutral
+  static const Color neutral=Color(0xFFFFFFFF);
   static const Color neutral100 = Color(0xFFF5F5F5);
   static const Color neutral200 = Color(0xFFE5E5E5);
   static const Color neutral300 = Color(0xFFE0E0E0);
@@ -47,17 +48,8 @@ class CustomColors {
   static const Color neutral900 = Color(0xFF090909);
   static const Color neutral1000 = Color(0xFF0A0A0A);
 
-  ///btn
-  static const Color btnColor = Color(0xFFF2EFF6);
-  static const Color description = Color(0xFF424242);
-  static const Color bg =Color (0xFF00000008);
-  static const Color navbar = Color(0xFF616161);
-
-
-
 
   /// grey
-
   static const Color grey = Color(0xFF616161);
   static const Color grey50 = Color(0xFFF5F5F5);
   static const Color grey100 = Color(0xFFE0E0E0);
@@ -68,6 +60,6 @@ class CustomColors {
   static const Color pink50 = Color(0xFFF2EFF6);
 
   // Purple
-  static const Color purple = Color(0xFF7F67A1);
+  //static const Color purple = Color(0xFF7F67A1);
   static List<Color> homeGradient = [Color(0xFFFFFFFF), Color(0xFFDECAF2)];
 }

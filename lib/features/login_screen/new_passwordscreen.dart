@@ -79,7 +79,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                     MaterialPageRoute(builder: (context) => HomeScreen()),
                   );
                 },
-                bgcolor: CustomColors.purple,
+                bgcolor: CustomColors.purpule600,
                 btnheight: 48,
               ),
             ],

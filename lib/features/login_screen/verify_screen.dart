@@ -66,7 +66,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                   ),
                 );
               },
-              bgcolor: CustomColors.purple,
+              bgcolor: CustomColors.purpule600,
               btnheight: 48,
             ),
           ),
